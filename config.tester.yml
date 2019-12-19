@@ -1,0 +1,12 @@
+---
+test-length: 20 
+test-interval: 300
+server-port: 5201
+grafana-address: localhost
+grafana-port: 2003
+tsdb-download-prefix: bandwidth.download
+tsdb-upload-prefix: bandwidth.upload
+iperf-servers:
+  - nacional.grupogtd.com: GTDLocal 
+  - internacional.grupogtd.com: GTDInternacional
+  - telsur.grupogtd.com: GTDNacional
