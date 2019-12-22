@@ -13,10 +13,12 @@ sudo systemctl daemon-reload
 sudo systemctl start docker
 sudo docker run -d --name go-graphite --restart=always -p 80:80 -p 2003-2004:2003-2004 gographite/go-graphite
 cd /home/gtd
-wget --no-check-certificate https://raw.githubusercontent.com/ralvaradof/bwtester/master/default-grafana.json
+wget --no-check-certificate https://raw.githubusercontent.com/ralvaradof/bwtester/master/default-grafana.json -O certificacion.json
 wget --no-check-certificate https://raw.githubusercontent.com/ralvaradof/bwtester/master/cbandwidth-gtd
 wget --no-check-certificate https://raw.githubusercontent.com/ralvaradof/bwtester/master/config.tester.yml
+wget --no-check-certificate https://raw.githubusercontent.com/ralvaradof/bwtester/master/grafana.yml
 chmod +x cbandwidth-gtd
+ansible-playbook grafana.yml
 sudo ./cbandwidth-gtd -config=config.tester.yml &
 chromium-browser http://127.0.0.1 -start-fullscreen
 # set appropriately and this script is run as root.
