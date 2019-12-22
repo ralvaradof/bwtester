@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+# Note: this is a sample and will not be run as is.  Change the name of this
+# file to <gdmconfdir>/PostLogin/Default for this script to be run.  This
+# script will be run before any setup is run on behalf of the user and is
+# useful if you for example need to do some setup to create a home directory
+# for the user or something like that.  $HOME, $LOGIN and such will all be
+sudo mv /var/lib/docker/runtimes /var/lib/docker/runtime
+sudo sed -i 's/dockerd/dockerd --storage-driver=vfs /g' /etc/systemd/system/multi-user.target.wants/docker.service
+sudo sed -i 's/dockerd/dockerd --storage-driver=vfs /g' /lib/systemd/system/docker.service
+sudo touch /etc/systemd/system/multi-user.target.wants/docker.service
+sudo systemctl daemon-reload
+sudo systemctl start docker
+sudo docker run -d --name go-graphite --restart=always -p 80:80 -p 2003-2004:2003-2004 gographite/go-graphite
+cd /home/gtd
+wget --no-check-certificate https://raw.githubusercontent.com/ralvaradof/bwtester/master/default-grafana.json
+wget --no-check-certificate https://raw.githubusercontent.com/ralvaradof/bwtester/master/cbandwidth-gtd
+wget --no-check-certificate https://raw.githubusercontent.com/ralvaradof/bwtester/master/config.tester.yml
+chmod +x cbandwidth-gtd
+sudo ./cbandwidth-gtd -config=config.tester.yml &
+chromium-browser http://127.0.0.1 -start-fullscreen
+# set appropriately and this script is run as root.
