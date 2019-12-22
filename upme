@@ -19,6 +19,8 @@ wget --no-check-certificate https://raw.githubusercontent.com/ralvaradof/bwteste
 wget --no-check-certificate https://raw.githubusercontent.com/ralvaradof/bwtester/master/grafana.yml
 chmod +x cbandwidth-gtd
 ansible-playbook grafana.yml
+sudo docker exec -d go-graphite wget --no-check-certificate https://raw.githubusercontent.com/ralvaradof/bwtester/master/grafana.ini -O /etc/grafana/grafana.ini
+sudo docker restart go-graphite
 sudo ./cbandwidth-gtd -config=config.tester.yml &
 chromium-browser http://127.0.0.1 -start-fullscreen
 # set appropriately and this script is run as root.
