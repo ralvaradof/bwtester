@@ -1,0 +1,12 @@
+- hosts: localhost
+  connection: local
+  tasks:
+
+    - name: Import Grafana dashboard foo
+      grafana_dashboard:
+        grafana_url: http://127.0.0.1
+        state: present
+        message: Updated by ansible
+        slug: gtd 
+        overwrite: yes
+        path: /home/gtd/certificacion.json
