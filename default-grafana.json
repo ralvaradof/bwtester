@@ -1,7 +1,7 @@
 {
   "id": null,
-  "title": "Bandwidth Dashboard",
-  "originalTitle": "Bandwidth Dashboard",
+  "title": "Medicion de Ancho de Banda",
+  "originalTitle": "Medicion de Ancho de Banda",
   "tags": [],
   "style": "dark",
   "timezone": "browser",
@@ -16,7 +16,7 @@
       "collapse": false,
       "panels": [
         {
-          "title": "Combined Upload Bandwidth",
+          "title": "Velocidad de Subida Combinada",
           "error": false,
           "span": 12,
           "editable": true,
@@ -91,7 +91,7 @@
       "collapse": false,
       "panels": [
         {
-          "title": "Combined Download Bandwidth",
+          "title": "Velocidad de Descarga Combinada",
           "error": false,
           "span": 12,
           "editable": true,
@@ -157,7 +157,7 @@
           "links": []
         },
         {
-          "title": "Combined Upload/Download - Bi-Directional",
+          "title": "Velocidad de Subida/Descarga - Bi-Direccional",
           "error": false,
           "span": 12,
           "editable": true,
@@ -340,7 +340,7 @@
       "collapse": false,
       "panels": [
         {
-          "title": "Digital Ocean Bandwidth",
+          "title": "Ancho de Banda Nacional",
           "error": false,
           "span": 12,
           "editable": true,
@@ -414,7 +414,7 @@
       "collapse": false,
       "panels": [
         {
-          "title": "Test VirtualBox Bandwidth",
+          "title": "Ancho de Banda Internacional",
           "error": false,
           "span": 12,
           "editable": true,
@@ -488,7 +488,7 @@
       "collapse": false,
       "panels": [
         {
-          "title": "Microsoft Azure Bandwidth",
+          "title": "Ancho de Banda Local",
           "error": false,
           "span": 12,
           "editable": true,
