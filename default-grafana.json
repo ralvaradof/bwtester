@@ -71,9 +71,9 @@
             }
           ],
           "aliasColors": {
-            "GTDNacional": "#6ED0E0",
-            "GTDInternacional": "#AEA2E0",
-            "GTDLocal": "#705DA0"
+            "GTDNacional": "#FFFC33",
+            "GTDInternacional": "#FF3333",
+            "GTDLocal": "#3352FF"
           },
           "seriesOverrides": [],
           "links": []
@@ -142,9 +142,9 @@
             }
           ],
           "aliasColors": {
-            "GTDNacional": "#6ED0E0",
-            "GTDInternacional": "#AEA2E0",
-            "GTDLocal": "#705DA0"
+            "GTDNacional": "#FFFC33",
+            "GTDInternacional": "#FF3333",
+            "GTDLocal": "#3352FF"
           },
           "seriesOverrides": [],
           "links": []
@@ -208,9 +208,9 @@
             }
           ],
           "aliasColors": {
-            "GTDNacional": "#6ED0E0",
-            "GTDInternacional": "#AEA2E0",
-            "GTDLocal": "#705DA0"
+            "GTDNacional": "#FFFC33",
+            "GTDInternacional": "#FF3333",
+            "GTDLocal": "#3352FF"
           },
           "seriesOverrides": [],
           "links": []
