@@ -16,7 +16,7 @@
       "collapse": false,
       "panels": [
         {
-          "title": "Velocidad de Subida Combinada",
+          "title": "Velocidad de Descarga Combinada",
           "error": false,
           "span": 12,
           "editable": true,
@@ -67,17 +67,13 @@
           },
           "targets": [
             {
-              "target": "aliasByMetric(bandwidth.upload.*)"
+              "target": "aliasByMetric(bandwidth.download.*)"
             }
           ],
           "aliasColors": {
-            "digitalocean": "#6ED0E0",
-            "virtualbox": "#AEA2E0",
-            "openstack": "#705DA0",
-            "rackspace": "#F9D9F9",
-            "azure": "#CFFAFF",
-            "vmwarevcloudair": "#F9934E",
-            "vmwarevsphere": "#E0F9D7"
+            "GTDNacional": "#6ED0E0",
+            "GTDInternacional": "#AEA2E0",
+            "GTDLocal": "#705DA0"
           },
           "seriesOverrides": [],
           "links": []
@@ -91,7 +87,7 @@
       "collapse": false,
       "panels": [
         {
-          "title": "Velocidad de Descarga Combinada",
+          "title": "Velocidad de Subida Combinada",
           "error": false,
           "span": 12,
           "editable": true,
@@ -142,16 +138,13 @@
           },
           "targets": [
             {
-              "target": "aliasByMetric(bandwidth.download.*)"
+              "target": "aliasByMetric(bandwidth.upload.*)"
             }
           ],
           "aliasColors": {
-            "digitalocean": "#6ED0E0",
-            "virtualbox": "#AEA2E0",
-            "vmwarevsphere": "#E5A8E2",
-            "openstack": "#64B0C8",
-            "vmwarevcloudair": "#F9D9F9",
-            "softlayer": "#E0F9D7"
+            "GTDNacional": "#6ED0E0",
+            "GTDInternacional": "#AEA2E0",
+            "GTDLocal": "#705DA0"
           },
           "seriesOverrides": [],
           "links": []
@@ -215,14 +208,9 @@
             }
           ],
           "aliasColors": {
-            "virtualbox": "#E24D42",
-            "digitalocean": "#447EBC",
-            "amazonec2": "#DEDAF7",
-            "rackspace": "#E0F9D7",
-            "bandwidth.download.digitalocean": "#E0752D",
-            "bandwidth.download.virtualbox": "#1F78C1",
-            "bandwidth.upload.digitalocean": "#BADFF4",
-            "bandwidth.upload.virtualbox": "#AEA2E0"
+            "GTDNacional": "#6ED0E0",
+            "GTDInternacional": "#AEA2E0",
+            "GTDLocal": "#705DA0"
           },
           "seriesOverrides": [],
           "links": []
@@ -390,17 +378,17 @@
           },
           "targets": [
             {
-              "target": "bandwidth.download.digitalocean",
+              "target": "bandwidth.download.GTDNacional",
               "hide": false
             },
             {
-              "target": "bandwidth.upload.digitalocean",
+              "target": "bandwidth.upload.GTDNacional",
               "hide": false
             }
           ],
           "aliasColors": {
-            "bandwidth.upload.digitalocean": "#BADFF4",
-            "bandwidth.download.digitalocean": "#1F78C1"
+            "bandwidth.upload.GTDNacional": "#BADFF4",
+            "bandwidth.download.GTDNacional": "#1F78C1"
           },
           "seriesOverrides": [],
           "links": []
@@ -465,15 +453,15 @@
           },
           "targets": [
             {
-              "target": "bandwidth.download.virtualbox"
+              "target": "bandwidth.download.GTDInternacional"
             },
             {
-              "target": "bandwidth.upload.virtualbox"
+              "target": "bandwidth.upload.GTDInternacional"
             }
           ],
           "aliasColors": {
-            "bandwidth.download.virtualbox": "#1F78C1",
-            "bandwidth.upload.virtualbox": "#EAB839"
+            "bandwidth.download.GTDInternacional": "#1F78C1",
+            "bandwidth.upload.GTDInternacional": "#EAB839"
           },
           "seriesOverrides": [],
           "links": []
@@ -539,458 +527,21 @@
           },
           "targets": [
             {
-              "target": "bandwidth.download.azure"
+              "target": "bandwidth.download.GTDLocal"
             },
             {
-              "target": "bandwidth.upload.azure"
+              "target": "bandwidth.upload.GTDLocal"
             }
           ],
           "aliasColors": {
-            "bandwidth.download.azure": "#1F78C1",
-            "bandwidth.upload.azure": "#AEA2E0"
+            "bandwidth.download.GTDLocal": "#1F78C1",
+            "bandwidth.upload.GTDLocal": "#AEA2E0"
           },
           "seriesOverrides": [],
           "links": []
         }
       ],
       "showTitle": false
-    },
-    {
-      "title": "New row",
-      "height": "250px",
-      "editable": true,
-      "collapse": false,
-      "panels": [
-        {
-          "title": "RackSpace Bandwidth",
-          "error": false,
-          "span": 12,
-          "editable": true,
-          "type": "graph",
-          "id": 5,
-          "datasource": null,
-          "renderer": "flot",
-          "x-axis": true,
-          "y-axis": true,
-          "y_formats": [
-            "bits",
-            "short"
-          ],
-          "grid": {
-            "leftMax": null,
-            "rightMax": null,
-            "leftMin": null,
-            "rightMin": null,
-            "threshold1": null,
-            "threshold2": null,
-            "threshold1Color": "rgba(216, 200, 27, 0.27)",
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
-          },
-          "lines": true,
-          "fill": 2,
-          "linewidth": 3,
-          "points": true,
-          "pointradius": 4,
-          "bars": false,
-          "stack": false,
-          "percentage": false,
-          "legend": {
-            "show": true,
-            "values": true,
-            "min": true,
-            "max": true,
-            "current": true,
-            "total": false,
-            "avg": true,
-            "alignAsTable": true
-          },
-          "nullPointMode": "connected",
-          "steppedLine": false,
-          "tooltip": {
-            "value_type": "cumulative",
-            "shared": true
-          },
-          "targets": [
-            {
-              "target": "bandwidth.download.rackspace"
-            },
-            {
-              "target": "bandwidth.upload.rackspace"
-            }
-          ],
-          "aliasColors": {
-            "bandwidth.upload.rackspace": "#BF1B00",
-            "bandwidth.download.rackspace": "#1F78C1"
-          },
-          "seriesOverrides": [],
-          "links": []
-        }
-      ]
-    },
-    {
-      "title": "New row",
-      "height": "250px",
-      "editable": true,
-      "collapse": false,
-      "panels": [
-        {
-          "title": "Google Bandwidth",
-          "error": false,
-          "span": 12,
-          "editable": true,
-          "type": "graph",
-          "id": 10,
-          "datasource": null,
-          "renderer": "flot",
-          "x-axis": true,
-          "y-axis": true,
-          "y_formats": [
-            "short",
-            "short"
-          ],
-          "grid": {
-            "leftMax": null,
-            "rightMax": null,
-            "leftMin": null,
-            "rightMin": null,
-            "threshold1": null,
-            "threshold2": null,
-            "threshold1Color": "rgba(216, 200, 27, 0.27)",
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
-          },
-          "lines": true,
-          "fill": 3,
-          "linewidth": 3,
-          "points": true,
-          "pointradius": 4,
-          "bars": false,
-          "stack": false,
-          "percentage": false,
-          "legend": {
-            "show": true,
-            "values": true,
-            "min": true,
-            "max": true,
-            "current": true,
-            "total": false,
-            "avg": true,
-            "alignAsTable": true,
-            "sortDesc": true
-          },
-          "nullPointMode": "connected",
-          "steppedLine": false,
-          "tooltip": {
-            "value_type": "cumulative",
-            "shared": true
-          },
-          "targets": [
-            {
-              "target": "bandwidth.download.google"
-            },
-            {
-              "target": "bandwidth.upload.google"
-            }
-          ],
-          "aliasColors": {
-            "bandwidth.download.google": "#1F78C1",
-            "bandwidth.upload.google": "#E0752D"
-          },
-          "seriesOverrides": [],
-          "links": []
-        }
-      ]
-    },
-    {
-      "title": "New row",
-      "height": "250px",
-      "editable": true,
-      "collapse": false,
-      "panels": [
-        {
-          "title": "IBM Softlayer Bandwidth",
-          "error": false,
-          "span": 12,
-          "editable": true,
-          "type": "graph",
-          "id": 6,
-          "datasource": null,
-          "renderer": "flot",
-          "x-axis": true,
-          "y-axis": true,
-          "y_formats": [
-            "bits",
-            "short"
-          ],
-          "grid": {
-            "leftMax": null,
-            "rightMax": null,
-            "leftMin": null,
-            "rightMin": null,
-            "threshold1": null,
-            "threshold2": null,
-            "threshold1Color": "rgba(216, 200, 27, 0.27)",
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
-          },
-          "lines": true,
-          "fill": 3,
-          "linewidth": 3,
-          "points": true,
-          "pointradius": 4,
-          "bars": false,
-          "stack": true,
-          "percentage": false,
-          "legend": {
-            "show": true,
-            "values": true,
-            "min": true,
-            "max": true,
-            "current": true,
-            "total": false,
-            "avg": true,
-            "alignAsTable": true,
-            "rightSide": false
-          },
-          "nullPointMode": "connected",
-          "steppedLine": false,
-          "tooltip": {
-            "value_type": "cumulative",
-            "shared": true
-          },
-          "targets": [
-            {
-              "target": "bandwidth.download.softlayer"
-            },
-            {
-              "target": "bandwidth.upload.softlayer"
-            }
-          ],
-          "aliasColors": {
-            "bandwidth.softlayer": "#70DBED",
-            "bandwidth.download.softlayer": "#1F78C1",
-            "bandwidth.upload.softlayer": "#7EB26D"
-          },
-          "seriesOverrides": [],
-          "links": []
-        }
-      ]
-    },
-    {
-      "title": "New row",
-      "height": "250px",
-      "editable": true,
-      "collapse": false,
-      "panels": [
-        {
-          "title": "VMware Fusion Bandwidth",
-          "error": false,
-          "span": 12,
-          "editable": true,
-          "type": "graph",
-          "id": 12,
-          "datasource": null,
-          "renderer": "flot",
-          "x-axis": true,
-          "y-axis": true,
-          "y_formats": [
-            "short",
-            "short"
-          ],
-          "grid": {
-            "leftMax": null,
-            "rightMax": null,
-            "leftMin": null,
-            "rightMin": null,
-            "threshold1": null,
-            "threshold2": null,
-            "threshold1Color": "rgba(216, 200, 27, 0.27)",
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
-          },
-          "lines": true,
-          "fill": 3,
-          "linewidth": 3,
-          "points": true,
-          "pointradius": 4,
-          "bars": false,
-          "stack": false,
-          "percentage": false,
-          "legend": {
-            "show": true,
-            "values": true,
-            "min": true,
-            "max": true,
-            "current": true,
-            "total": false,
-            "avg": true,
-            "alignAsTable": true
-          },
-          "nullPointMode": "connected",
-          "steppedLine": false,
-          "tooltip": {
-            "value_type": "cumulative",
-            "shared": true
-          },
-          "targets": [
-            {
-              "target": "bandwidth.download.vmwarefusion"
-            },
-            {
-              "target": "bandwidth.upload.vmwarefusion"
-            }
-          ],
-          "aliasColors": {
-            "bandwidth.download.vmwarefusion": "#1F78C1",
-            "bandwidth.upload.vmwarefusion": "#EA6460"
-          },
-          "seriesOverrides": [],
-          "links": []
-        }
-      ]
-    },
-    {
-      "title": "New row",
-      "height": "250px",
-      "editable": true,
-      "collapse": false,
-      "panels": [
-        {
-          "title": "Amazon EC2 Bandwidth",
-          "error": false,
-          "span": 12,
-          "editable": true,
-          "type": "graph",
-          "id": 2,
-          "datasource": null,
-          "renderer": "flot",
-          "x-axis": true,
-          "y-axis": true,
-          "y_formats": [
-            "bits",
-            "short"
-          ],
-          "grid": {
-            "leftMax": null,
-            "rightMax": null,
-            "leftMin": null,
-            "rightMin": null,
-            "threshold1": null,
-            "threshold2": null,
-            "threshold1Color": "rgba(216, 200, 27, 0.27)",
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
-          },
-          "lines": true,
-          "fill": 3,
-          "linewidth": 3,
-          "points": true,
-          "pointradius": 4,
-          "bars": false,
-          "stack": true,
-          "percentage": false,
-          "legend": {
-            "show": true,
-            "values": true,
-            "min": true,
-            "max": true,
-            "current": true,
-            "total": false,
-            "avg": true,
-            "alignAsTable": true,
-            "rightSide": false,
-            "sortDesc": true
-          },
-          "nullPointMode": "connected",
-          "steppedLine": false,
-          "tooltip": {
-            "value_type": "cumulative",
-            "shared": true
-          },
-          "targets": [
-            {
-              "target": "bandwidth.download.amazonec2"
-            },
-            {
-              "target": "bandwidth.upload.amazonec2"
-            }
-          ],
-          "aliasColors": {
-            "bandwidth.download.amazonec2": "#1F78C1",
-            "bandwidth.upload.amazonec2": "#EF843C"
-          },
-          "seriesOverrides": [],
-          "links": []
-        }
-      ]
-    },
-    {
-      "title": "New row",
-      "height": "250px",
-      "editable": true,
-      "collapse": false,
-      "panels": [
-        {
-          "title": "VMware vSphere",
-          "error": false,
-          "span": 12,
-          "editable": true,
-          "type": "graph",
-          "id": 11,
-          "datasource": null,
-          "renderer": "flot",
-          "x-axis": true,
-          "y-axis": true,
-          "y_formats": [
-            "short",
-            "short"
-          ],
-          "grid": {
-            "leftMax": null,
-            "rightMax": null,
-            "leftMin": null,
-            "rightMin": null,
-            "threshold1": null,
-            "threshold2": null,
-            "threshold1Color": "rgba(216, 200, 27, 0.27)",
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
-          },
-          "lines": true,
-          "fill": 3,
-          "linewidth": 3,
-          "points": true,
-          "pointradius": 4,
-          "bars": false,
-          "stack": false,
-          "percentage": false,
-          "legend": {
-            "show": true,
-            "values": true,
-            "min": true,
-            "max": true,
-            "current": true,
-            "total": false,
-            "avg": true,
-            "alignAsTable": true
-          },
-          "nullPointMode": "connected",
-          "steppedLine": false,
-          "tooltip": {
-            "value_type": "cumulative",
-            "shared": true
-          },
-          "targets": [
-            {
-              "target": "bandwidth.download.vmwarevsphere"
-            },
-            {
-              "target": "bandwidth.upload.vmwarevsphere"
-            }
-          ],
-          "aliasColors": {
-            "bandwidth.upload.vmwarevsphere": "#E5AC0E",
-            "bandwidth.download.vmwarevsphere": "#1F78C1"
-          },
-          "seriesOverrides": [],
-          "links": []
-        }
-      ]
     },
     {
       "title": "New row",
