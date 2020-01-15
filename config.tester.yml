@@ -8,5 +8,5 @@ tsdb-download-prefix: bandwidth.download
 tsdb-upload-prefix: bandwidth.upload
 iperf-servers:
   - nacional.grupogtd.com: GTDLocal 
-  - internacional.grupogtd.com: GTDInternacional
+  - speedtest-br.grupogtd.com: GTDInternacional
   - telsur.grupogtd.com: GTDNacional
