@@ -10,3 +10,5 @@ iperf-servers:
   - 190.196.123.108: GTDLocal 
   - speedtest-br.grupogtd.com: GTDInternacional
   - 200.29.48.223: GTDNacional
+conexiones-descarga: 10
+conexiones-subida: 5 
