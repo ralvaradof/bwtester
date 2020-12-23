@@ -1,6 +1,6 @@
 ---
 test-length: 30 
-test-interval: 10
+test-interval: 5 
 server-port: 15225 
 grafana-address: localhost
 grafana-port: 2003
@@ -11,4 +11,4 @@ iperf-servers:
   - speedtest-br.grupogtd.com: GTDInternacional
   - 200.29.48.223: GTDNacional
 conexiones-descarga: 10
-conexiones-subida: 5 
+conexiones-subida: 10 
