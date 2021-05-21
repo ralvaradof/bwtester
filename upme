@@ -11,6 +11,10 @@ sudo sed -i 's/dockerd/dockerd --storage-driver=vfs /g' /lib/systemd/system/dock
 sudo touch /etc/systemd/system/multi-user.target.wants/docker.service
 sudo systemctl daemon-reload
 sudo systemctl start docker
+FILE=/home/gtd/gographite_go-graphite.tar
+if [ -f "$FILE" ]; then
+    docker load -i /home/gtd/gographite_go-graphite.tar
+fi
 sudo docker run -d --name go-graphite --restart=always -p 80:80 -p 2003-2004:2003-2004 gographite/go-graphite
 cd /home/gtd
 wget --no-check-certificate https://raw.githubusercontent.com/ralvaradof/bwtester/master/default-grafana.json -O certificacion.json
