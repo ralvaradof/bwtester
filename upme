@@ -13,7 +13,7 @@ sudo systemctl daemon-reload
 sudo systemctl start docker
 FILE=/home/gtd/gographite_go-graphite.tar
 if [ -f "$FILE" ]; then
-    docker load -i /home/gtd/gographite_go-graphite.tar
+    sudo docker load -i /home/gtd/gographite_go-graphite.tar
 fi
 sudo docker run -d --name go-graphite --restart=always -p 80:80 -p 2003-2004:2003-2004 gographite/go-graphite
 cd /home/gtd
