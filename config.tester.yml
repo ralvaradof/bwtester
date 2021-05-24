@@ -1,7 +1,7 @@
 ---
 test-length: 30 
 test-interval: 5 
-server-port: 15225 
+server-port: 30000 
 grafana-address: localhost
 grafana-port: 2003
 tsdb-download-prefix: bandwidth.download
