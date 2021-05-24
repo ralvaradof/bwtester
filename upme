@@ -22,6 +22,7 @@ wget --no-check-certificate https://raw.githubusercontent.com/ralvaradof/bwteste
 wget --no-check-certificate https://raw.githubusercontent.com/ralvaradof/bwtester/master/cbandwidth-gtd
 wget --no-check-certificate https://raw.githubusercontent.com/ralvaradof/bwtester/master/config.tester.yml
 wget --no-check-certificate https://raw.githubusercontent.com/ralvaradof/bwtester/master/grafana.yml
+chmod +x iperf3-static
 chmod +x cbandwidth-gtd
 ansible-playbook grafana.yml
 sudo docker exec -d go-graphite wget --no-check-certificate https://raw.githubusercontent.com/ralvaradof/bwtester/master/grafana.ini -O /etc/grafana/grafana.ini
