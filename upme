@@ -32,4 +32,4 @@ sudo ./cbandwidth-gtd -config=config.tester.yml &
 sleep 3
 #chromium-browser http://127.0.0.1/d/$(curl --silent http://127.0.0.1/api/search?query=% | jq '.[].uid' | awk -F '"' '{print $2}')?kiosk -start-fullscreen --password-store=basic --no-default-browser-check
 #chromium-browser http://127.0.0.1/d/$(curl --silent http://127.0.0.1/api/search?query=% | jq '.[].uid' | awk -F '"' '{print $2}')?kiosk --password-store=basic --no-default-browser-check
-chromium-browser http://127.0.0.1/?orgid=1
+chromium-browser http://127.0.0.1/dashboards --password-store=basic --no-default-browser-check
