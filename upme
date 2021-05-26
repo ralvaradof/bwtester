@@ -18,18 +18,17 @@ if [ -f "$FILE" ]; then
 fi
 sudo docker run -d --name go-graphite --restart=always -p 80:80 -p 2003-2004:2003-2004 gographite/go-graphite
 cd /home/gtd
-wget --no-check-certificate https://raw.githubusercontent.com/ralvaradof/bwtester/master/default-grafana.json -O certificacion.json
-wget --no-check-certificate https://raw.githubusercontent.com/ralvaradof/bwtester/master/iperf3-static
-wget --no-check-certificate https://raw.githubusercontent.com/ralvaradof/bwtester/master/cbandwidth-gtd
-wget --no-check-certificate https://raw.githubusercontent.com/ralvaradof/bwtester/master/config.tester.yml
-wget --no-check-certificate https://raw.githubusercontent.com/ralvaradof/bwtester/master/grafana.yml
+wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/default-grafana.json -O certificacion.json
+wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/iperf3-static
+wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/cbandwidth-gtd
+wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/config.tester.yml
+wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/grafana.yml
 chmod +x iperf3-static
 chmod +x cbandwidth-gtd
 ansible-playbook grafana.yml
-sudo docker exec -d go-graphite wget --no-check-certificate https://raw.githubusercontent.com/ralvaradof/bwtester/master/grafana.ini -O /etc/grafana/grafana.ini
+sudo docker exec -d go-graphite wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/grafana.ini -O /etc/grafana/grafana.ini
 sudo docker restart go-graphite
 sudo ./cbandwidth-gtd -config=config.tester.yml &
 sleep 3
 #chromium-browser http://127.0.0.1/d/$(curl --silent http://127.0.0.1/api/search?query=% | jq '.[].uid' | awk -F '"' '{print $2}')?kiosk -start-fullscreen --password-store=basic --no-default-browser-check
-chromium-browser http://127.0.0.1/d/$(curl --silent http://127.0.0.1/api/search?query=% | jq '.[].uid' | awk -F '"' '{print $2}')?kiosk --password-store=basic --no-default-browser-check
-# set appropriately and this script is run as root.
+chromium-browser http://127.0.0.1/d/$(curl --silent http://127.0.0.1/api/search?query=% | jq '.[].uid' | awk -F '"' '{print $2}')?kiosk --password-store=basic --no-default-browser-check  --> solicitud correo neutralidad
