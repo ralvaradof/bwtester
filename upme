@@ -5,6 +5,7 @@
 # script will be run before any setup is run on behalf of the user and is
 # useful if you for example need to do some setup to create a home directory
 # for the user or something like that.  $HOME, $LOGIN and such will all be
+sudo timedatectl set-timezone America/Santiago
 sudo mv /var/lib/docker/runtimes /var/lib/docker/runtime
 sudo sed -i 's/dockerd/dockerd --storage-driver=vfs /g' /etc/systemd/system/multi-user.target.wants/docker.service
 sudo sed -i 's/dockerd/dockerd --storage-driver=vfs /g' /lib/systemd/system/docker.service
