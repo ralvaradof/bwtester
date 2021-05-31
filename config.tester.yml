@@ -1,14 +1,14 @@
 ---
 test-length: 30 
 test-interval: 5 
-server-port: 30000 
+server-port: 25000 
 grafana-address: localhost
 grafana-port: 2003
 tsdb-download-prefix: bandwidth.download
 tsdb-upload-prefix: bandwidth.upload
 iperf-servers:
   - 190.196.123.108: GTDLocal 
-  - speedtest-br.grupogtd.com: GTDInternacional
+  - 177.54.144.117: GTDInternacional
   - 200.29.48.223: GTDNacional
 conexiones-descarga: 20
 conexiones-subida: 10 

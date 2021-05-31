@@ -27,6 +27,10 @@ wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/iperf3-static
 wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/cbandwidth-gtd
 wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/config.tester.yml
 wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/grafana.yml
+wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/iperf3down
+wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/iperf3up
+chmod +x iperf3down
+chmod +x iperf3up
 chmod +x iperf3-static
 chmod +x cbandwidth-gtd
 ansible-playbook grafana.yml

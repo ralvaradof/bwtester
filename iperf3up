@@ -1,0 +1,62 @@
+#!/usr/bin/python3
+import time
+import sys
+import os
+import subprocess
+import json
+import requests
+import socket
+from subprocess import check_output
+
+server = str(sys.argv[4])
+port = int(sys.argv[3])
+procs = int(sys.argv[1])
+test_time = int(sys.argv[2])
+
+def IperfTestRun(host, port, test_func, iperf_procs, iperf_time):
+    with socket.create_connection((host, port), 2) as s:
+        s.sendall("SENDPORT\r\n".encode())
+        received_port = int(s.recv(4096).decode())
+        # the server needs some time to set up the server subprocess
+        time.sleep(2)
+        result = test_func(host, received_port, iperf_procs, iperf_time)
+    return result
+
+def IperfTestUp(iperf_host, iperf_port, iperf_procs, iperf_time):
+    cmd = ['iperf3', '-c', iperf_host, '-p', str(iperf_port),  '-t', str(iperf_time), '-P', str(iperf_procs), '-4', '-Z', '-O 5', '--json']
+    try:
+        out = check_output(cmd)
+        return(out)
+    #except:
+    #    return False
+    except Exception as e:
+        print(e)
+        return False
+
+def IperfTestDown(iperf_host, iperf_port, iperf_procs, iperf_time):
+    cmd = ['iperf3', '-c', iperf_host, '-p', str(iperf_port),  '-t', str(iperf_time), '-P', str(iperf_procs), '-4','-Z', '-O 5', '--json', '-R']
+    try:
+        out = check_output(cmd)
+        return(out)
+    #except:
+    #    return False
+    except Exception as e:
+        print(e)
+        return False
+#def IperfTestJitter(iperf_host, iperf_port):
+#    regex = re.compile('^\[SUM\].*\s([0-9]+\.[0-9]+) ms')
+#    cmd = ['iperf3', '-c', iperf_host, '-p', str(iperf_port), '-P', '4', '-u']
+#    result = run(cmd, stdin=None, stdout=PIPE, stderr=STDOUT)
+#    lines = result.stdout.decode().split('\n')
+#    for line in lines:
+#        match = regex.search(line)
+#        if match:
+#            return float(match.group(1))
+#    raise re.error("No lines in the stdout of iperf3 udp test matched the regex (looking for jitter)")
+
+
+result_up = IperfTestRun(server, port, IperfTestUp, procs, test_time)
+dict_up = json.loads(str(result_up, 'utf-8'))
+bits_per_second = dict_up['end']['sum_received']['bits_per_second']
+#print({server: bits_per_second})
+print(int(bits_per_second))
