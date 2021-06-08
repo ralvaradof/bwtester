@@ -7,8 +7,10 @@
 # for the user or something like that.  $HOME, $LOGIN and such will all be
 sudo systemctl stop systemd-resolved
 sudo rm -f /etc/resolv.conf
-sudo bash -c 'echo "nameserver 200.75.0.4" > /etc/resolv.conf'
-sudo bash -c 'echo "nameserver 200.75.0.5" >> /etc/resolv.conf'
+#sudo bash -c 'echo "nameserver 200.75.0.4" > /etc/resolv.conf'
+#sudo bash -c 'echo "nameserver 200.75.0.5" >> /etc/resolv.conf'
+sudo bash -c 'echo "nameserver 8.8.8.8" > /etc/resolv.conf'
+sudo bash -c 'echo "nameserver 1.1.1.1" >> /etc/resolv.conf'
 sudo timedatectl set-timezone America/Santiago
 sudo mv /var/lib/docker/runtimes /var/lib/docker/runtime
 sudo sed -i 's/dockerd/dockerd --storage-driver=vfs /g' /etc/systemd/system/multi-user.target.wants/docker.service
