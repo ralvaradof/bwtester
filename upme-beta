@@ -12,17 +12,26 @@ sudo rm -f /etc/resolv.conf
 sudo bash -c 'echo "nameserver 8.8.8.8" > /etc/resolv.conf'
 sudo bash -c 'echo "nameserver 1.1.1.1" >> /etc/resolv.conf'
 sudo timedatectl set-timezone America/Santiago
+if ! sudo docker info > /dev/null 2>&1; then
 sudo mv /var/lib/docker/runtimes /var/lib/docker/runtime
 sudo sed -i 's/dockerd/dockerd --storage-driver=vfs /g' /etc/systemd/system/multi-user.target.wants/docker.service
 sudo sed -i 's/dockerd/dockerd --storage-driver=vfs /g' /lib/systemd/system/docker.service
 sudo touch /etc/systemd/system/multi-user.target.wants/docker.service
 sudo systemctl daemon-reload
 sudo systemctl start docker
-FILE=/home/gtd/gographite_go-graphite.tar
+fi
+
+container_name=go-graphite
+if sudo docker ps -a --format '{{.Names}}' | grep -Eq "^${container_name}\$"; then
+  echo "contenedor en ejecucion"
+else
+  FILE=/home/gtd/gographite_go-graphite.tar
 if [ -f "$FILE" ]; then
     sudo docker load -i /home/gtd/gographite_go-graphite.tar
 fi
 sudo docker run -d --name go-graphite --restart=always -p 80:80 -p 2003-2004:2003-2004 gographite/go-graphite
+fi
+
 cd /home/gtd
 
 archivos=(
@@ -36,7 +45,7 @@ archivos=(
     iperfLB
     cbandwidth-lb
 )
-for i in "${strings[@]}"; do
+for i in "${archivos[@]}"; do
 if [[ -f "/home/gtd/$i" ]]
     then
     echo "Archivo $i existente en el sistema"
