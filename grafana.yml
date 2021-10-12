@@ -10,3 +10,4 @@
         slug: gtd 
         overwrite: yes
         path: /home/gtd/certificacion.json
+      ignore_errors: true
