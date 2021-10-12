@@ -24,22 +24,35 @@ if [ -f "$FILE" ]; then
 fi
 sudo docker run -d --name go-graphite --restart=always -p 80:80 -p 2003-2004:2003-2004 gographite/go-graphite
 cd /home/gtd
-wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/default-grafana.json -O certificacion.json
-wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/iperf3-static
-wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/cbandwidth-gtd
-wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/config.tester.yml
-wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/config.tester.wanlb.yml
-wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/grafana.yml
-wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/iperf3down
-wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/iperf3up
-wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/iperfLB
-wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/cbandwidth-lb
-chmod +x iperf3down
-chmod +x iperf3up
-chmod +x iperf3-static
-chmod +x cbandwidth-gtd
-chmod +x cbandwidth-lb
-chmod +x iperfLB
+
+archivos=(
+    iperf3-static
+    cbandwidth-gtd
+    config.tester.yml
+    config.tester.wanlb.yml
+    grafana.yml
+    iperf3down
+    iperf3up
+    iperfLB
+    cbandwidth-lb
+)
+for i in "${strings[@]}"; do
+if [[ -f "/home/gtd/$i" ]]
+    then
+    echo "Archivo $i existente en el sistema"
+else
+    wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/$i -O $i
+    chmod +x $i
+    fi
+done
+
+if [[ -f "/home/gtd/certificacion.json" ]]
+    then
+    echo "Archivo certificacion.json existente en el sistema"
+else
+    wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/default-grafana.json -O certificacion.json
+fi
+
 ansible-playbook grafana.yml
 sudo docker exec -d go-graphite wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/grafana.ini -O /etc/grafana/grafana.ini
 sudo docker restart go-graphite
