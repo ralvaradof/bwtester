@@ -40,6 +40,7 @@ archivos=(
     config.tester.yml
     config.tester.wanlb.yml
     grafana.yml
+    grafana.ini
     iperf3down
     iperf3up
     iperfLB
@@ -63,7 +64,7 @@ else
 fi
 
 ansible-playbook grafana.yml
-sudo docker exec -d go-graphite wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/grafana.ini -O /etc/grafana/grafana.ini
+sudo docker cp /home/gtd/grafana.ini go-graphite:/etc/grafana/grafana.ini
 sudo docker restart go-graphite
 sudo ./cbandwidth-lb -config=config.tester.yml &
 sleep 3
