@@ -1,5 +1,5 @@
 ---
-test-length: 45 
+test-length: 60 
 test-interval: 5 
 server-port: 25000 
 grafana-address: localhost
@@ -11,7 +11,7 @@ iperf-servers:
   - 177.54.144.117: GTDInternacional
   - 200.29.48.223: GTDNacional
 conexiones-descarga: 10
-conexiones-subida: 5 
+conexiones-subida: 10 
 iperf-servers-parallel:
   GTDLocal: ['190.196.123.109', '190.196.123.109', '190.196.123.109', '190.196.123.109']
   GTDInternacional: ['177.54.144.117', '177.54.144.117', '177.54.144.117','177.54.144.117']
