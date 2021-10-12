@@ -78,7 +78,7 @@ class Sat:
 
 if __name__ == "__main__":
 
-    path_to_config_yaml = '/home/gtd/config.tester.yml'
+    path_to_config_yaml = '/home/gtd/config.tester.wanlb.yml'
 
     if not os.path.isfile(path_to_config_yaml):
         logging.error(f'No existe archivo de configuracion {path_to_config_yaml}')
