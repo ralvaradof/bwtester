@@ -11,4 +11,8 @@ iperf-servers:
   - 177.54.144.117: GTDInternacional
   - 200.29.48.223: GTDNacional
 conexiones-descarga: 20
-conexiones-subida: 10 
+conexiones-subida: 10
+iperf-servers-parallel:
+  GTDLocal: ['190.196.123.108', '177.54.144.117', '200.29.48.223']
+  GTDInternacional: ['190.196.123.108', '177.54.144.117', '200.29.48.223']
+  GTDNacional: ['190.196.123.108', '177.54.144.117', '200.29.48.223']
