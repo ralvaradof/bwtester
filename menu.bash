@@ -1,8 +1,8 @@
 #!/bin/bash
 
-HEIGHT=15
+HEIGHT=25
 WIDTH=60
-CHOICE_HEIGHT=5
+CHOICE_HEIGHT=6
 BACKTITLE="Herramienta de pruebas de velocidad - GTD"
 TITLE="Pruebas de Velocidad"
 MENU="Seleccione alguna de las siguientes pruebas:"
