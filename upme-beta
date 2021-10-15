@@ -1,10 +1,5 @@
 #!/bin/bash
 #
-# Note: this is a sample and will not be run as is.  Change the name of this
-# file to <gdmconfdir>/PostLogin/Default for this script to be run.  This
-# script will be run before any setup is run on behalf of the user and is
-# useful if you for example need to do some setup to create a home directory
-# for the user or something like that.  $HOME, $LOGIN and such will all be
 sudo systemctl stop systemd-resolved
 sudo rm -f /etc/resolv.conf
 #sudo bash -c 'echo "nameserver 200.75.0.4" > /etc/resolv.conf'
@@ -12,41 +7,15 @@ sudo rm -f /etc/resolv.conf
 sudo bash -c 'echo "nameserver 8.8.8.8" > /etc/resolv.conf'
 sudo bash -c 'echo "nameserver 1.1.1.1" >> /etc/resolv.conf'
 sudo timedatectl set-timezone America/Santiago
-if ! sudo docker info > /dev/null 2>&1; then
-sudo mv /var/lib/docker/runtimes /var/lib/docker/runtime
-sudo sed -i 's/dockerd/dockerd --storage-driver=vfs /g' /etc/systemd/system/multi-user.target.wants/docker.service
-sudo sed -i 's/dockerd/dockerd --storage-driver=vfs /g' /lib/systemd/system/docker.service
-sudo touch /etc/systemd/system/multi-user.target.wants/docker.service
-sudo systemctl daemon-reload
-sudo systemctl start docker
-fi
-
-container_name=go-graphite
-if sudo docker ps -a --format '{{.Names}}' | grep -Eq "^${container_name}\$"; then
-  echo "contenedor en ejecucion"
-else
-  FILE=/home/gtd/gographite_go-graphite.tar
-if [ -f "$FILE" ]; then
-    sudo docker load -i /home/gtd/gographite_go-graphite.tar
-fi
-sudo docker run -d --name go-graphite --restart=always -p 80:80 -p 2003-2004:2003-2004 gographite/go-graphite
-fi
-
+sudo apt update
 cd /home/gtd
-
-archivos=(
-    iperf3-static
-    cbandwidth-gtd
-    config.tester.yml
-    config.tester.wanlb.yml
-    grafana.yml
-    grafana.ini
-    iperf3down
-    iperf3up
-    iperfLB
-    cbandwidth-lb
+prereq=(
+    menu.bash
+    bwtest.fo.ftth.bash
+    bwtest.vsat.lb.bash
+    speedtest.net.sh
 )
-for i in "${archivos[@]}"; do
+for i in "${prereq[@]}"; do
 if [[ -f "/home/gtd/$i" ]]
     then
     echo "Archivo $i existente en el sistema"
@@ -56,19 +25,9 @@ else
     fi
 done
 
-if [[ -f "/home/gtd/certificacion.json" ]]
-    then
-    echo "Archivo certificacion.json existente en el sistema"
-else
-    wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/default-grafana.json -O certificacion.json
+pkgs='dialog'
+if ! dpkg -s $pkgs >/dev/null 2>&1; then
+  sudo apt install -qqq $pkgs
 fi
 
-ansible-playbook grafana.yml
-sudo docker cp /home/gtd/grafana.ini go-graphite:/etc/grafana/grafana.ini
-sudo docker restart go-graphite
-sudo ./cbandwidth-lb -config=config.tester.yml &
-sleep 3
-#chromium-browser http://127.0.0.1/d/$(curl --silent http://127.0.0.1/api/search?query=% | jq '.[].uid' | awk -F '"' '{print $2}')?kiosk -start-fullscreen --password-store=basic --no-default-browser-check
-#chromium-browser http://127.0.0.1/d/$(curl --silent http://127.0.0.1/api/search?query=% | jq '.[].uid' | awk -F '"' '{print $2}')?kiosk --password-store=basic --no-default-browser-check
-#chromium-browser http://127.0.0.1/dashboards --password-store=basic --no-default-browser-check
-firefox http://127.0.0.1/dashboards --password-store=basic
+bash /home/gtd/menu.bash
