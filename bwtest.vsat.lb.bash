@@ -58,6 +58,8 @@ sudo ./cbandwidth-lb -config=config.tester.yml &
 #chromium-browser http://127.0.0.1/d/$(curl --silent http://127.0.0.1/api/search?query=% | jq '.[].uid' | awk -F '"' '{print $2}')?kiosk --password-store=basic --no-default-browser-check
 chromium-browser http://127.0.0.1/dashboards --password-store=basic --no-default-browser-check
 #firefox http://127.0.0.1/dashboards --password-store=basic
+pgrep cbandwidth | xargs sudo kill -9
+pgrep iperf3 | xargs sudo kill -9
 echo  "########################################################################"
 echo  "Ejecucion finalizada"
 echo  "########################################################################"

@@ -11,7 +11,7 @@ fi
 
 
 tipo=$1
-pathsalida=/home/gtd/desktop
+pathsalida=/home/gtd/Desktop
 export servidor_br=30306
 export servidor_mia=11515
 export servidor_vald=17307
@@ -31,7 +31,7 @@ echo  "########################################################################"
 echo  "Las pruebas a cada servidor se realizaran $count veces"
 echo  "Usted ha seleccionado: $tipo"
 echo  "########################################################################"
-read -p "Presione [ENTER] para iniciar la reconfiguracion o Control+c para cancelar..."
+read -p "Presione [ENTER] para iniciar las pruebas o Control+c para cancelar..."
 
 if [[ "$tipo" == "Internacional.Nacional.Local" ]]; then
 
@@ -244,5 +244,5 @@ echo  "Ejecucion finalizada, los resultados de la prueba se encuentran en el arc
 echo  "presente en el escritorio"
 echo  "########################################################################"
 read -p "Presione [ENTER] para volver al menu principal o Control+c para salir de la aplicacion..."
-bash prueba.menu.bash
+bash menu.bash
 
