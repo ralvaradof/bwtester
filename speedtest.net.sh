@@ -23,8 +23,6 @@ cat <<EOF > /home/gtd/.config/ookla/speedtest-cli.json
 EOF
 chmod 644 /home/gtd/.config/ookla/speedtest-cli.json
 fi
-done
-
 
 
 tipo=$1
