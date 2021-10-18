@@ -9,6 +9,23 @@ else
  echo "Aplicacion speedtest cli ya se encuentra instalada"
 fi
 
+if [[ -f "/home/gtd/.config/ookla/speedtest-cli.json" ]]
+    then
+    echo "Archivo de configuracion base existente en el sistema"
+else
+    mkdir -p /home/gtd/.config/ookla/
+cat <<EOF > /home/gtd/.config/ookla/speedtest-cli.json
+{
+    "Settings": {
+        "LicenseAccepted": "604ec27f828456331ebf441826292c49276bd3c1bee1a2f65a6452f505c4061c"
+    }
+}
+EOF
+chmod 644 /home/gtd/.config/ookla/speedtest-cli.json
+fi
+done
+
+
 
 tipo=$1
 pathsalida=/home/gtd/Desktop
