@@ -23,8 +23,8 @@ if [ -f "/home/gtd/gographite_go-graphite.tar" ]; then
     echo "ISO actualizada"
 else
 echo  "#################### NUEVA VERSION DISPONIBLE #########################"
-echo  "Existe una nueva version de este aplicativo, por favor vuelva a descargar la imagen"
-echo  "desde http://nacional.grupogtd.com/Ubuntu-BWTester-GTD.iso"
+echo  "Existe una nueva version de este aplicativo, por favor"
+echo  "Descargue la imagen desde http://nacional.grupogtd.com/Ubuntu-BWTester-GTD.iso"
 echo  "y grabela en el pendrive segun lo indica el procedimiento."
 echo  "########################################################################"
 read -p "Presione [ENTER] para continuar..."
@@ -41,6 +41,10 @@ sudo timedatectl set-timezone America/Santiago
 echo "Actualizando repositorios"
 sudo apt update -qqq
 echo "Actualizacion finalizada"
+echo "instalando cliente NTP"
+sudo apt install -qqq ntpdate
+echo "Actualizando hora de la maquina con ntp.shoa.cl"
+sudo ntpdate ntp.shoa.cl
 cd /home/gtd
 prereq=(
     menu.bash
@@ -62,5 +66,5 @@ pkgs='dialog'
 if ! dpkg -s $pkgs >/dev/null 2>&1; then
   sudo apt install -qqq $pkgs
 fi
-
+rm -f upme-beta
 bash /home/gtd/menu.bash
