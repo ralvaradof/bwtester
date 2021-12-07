@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 clear
-memoria_minima=7680
+memoria_minima=7168
 memoria_sistema=$(free -m |awk '/^Mem:/{print $2}')
 
 
