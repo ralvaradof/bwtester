@@ -30,9 +30,8 @@ trap handler SIGINT
 clear
 echo  "########################################################################"
 echo  "Inicio del set de pruebas"
-echo  "Puede salir de la aplicacion en cualquier comento ejecutando Control+c"
+echo  "Puede salir de la aplicacion en cualquier momento ejecutando Control+c"
 echo  "########################################################################"
 read -p "Presione [ENTER] para iniciar las pruebas de velocidad o Control+c para salir de la aplicacion..."
 
 sudo ./cbandwidth-txt -config=config.tester.yml
-
