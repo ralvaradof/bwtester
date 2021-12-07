@@ -1,5 +1,6 @@
 #!/bin/bash
 #
+clear
 memoria_minima=7680
 memoria_sistema=$(free -m |awk '/^Mem:/{print $2}')
 
@@ -15,6 +16,7 @@ echo  "Cantidad de ram necesaria: $memoria_minima MB"
 echo  "Es posible que parte del proceso falle o tenga resultados inesperados."
 echo  "########################################################################"
 read -p "Presione [ENTER] para continuar..."
+clear
 fi
 
 if [ -f "/home/gtd/gographite_go-graphite.tar" ]; then
@@ -26,6 +28,7 @@ echo  "desde http://nacional.grupogtd.com/Ubuntu-BWTester-GTD.iso"
 echo  "y grabela en el pendrive segun lo indica el procedimiento."
 echo  "########################################################################"
 read -p "Presione [ENTER] para continuar..."
+clear
 fi
 
 sudo systemctl stop systemd-resolved
