@@ -186,5 +186,5 @@ if __name__ == "__main__":
 
     for test in return_dict.values():
            results.append(int(json.loads(test)['end']['sum_received']['bits_per_second']))
-
-    print(sum(results)/1000)
+    print(round((sum(results)/1000)/1000,2))
+    #print(sum(results)/1000)

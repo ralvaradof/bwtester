@@ -59,4 +59,5 @@ result_up = IperfTestRun(server, port, IperfTestUp, procs, test_time)
 dict_up = json.loads(str(result_up, 'utf-8'))
 bits_per_second = dict_up['end']['sum_received']['bits_per_second']
 #print({server: bits_per_second})
-print(int(bits_per_second)/1000)
+print(round((int(bits_per_second)/1000)/1000,2))
+#print(int(bits_per_second)/1000)
