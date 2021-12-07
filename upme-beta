@@ -68,6 +68,6 @@ else
     chmod +x $i
     fi
 done
-
+#
 rm -f upme-beta
 bash /home/gtd/menu.bash
