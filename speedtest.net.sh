@@ -41,7 +41,7 @@ if [ -z ${tipo} ]; then
     echo "El tipo de prueba no esta difinido"
     exit 1
 fi
-
+clear
 echo  "########################################################################"
 echo  "Las pruebas a cada servidor se realizaran $count veces"
 echo  "Usted ha seleccionado: $tipo"

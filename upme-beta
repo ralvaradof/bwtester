@@ -55,6 +55,7 @@ prereq=(
     menu.bash
     bwtest.fo.ftth.bash
     bwtest.vsat.lb.bash
+    bwtest.vsat.lb.txt.bash
     speedtest.net.sh
     bwtest.fo.ftth.txt.bash
 )

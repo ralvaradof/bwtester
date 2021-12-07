@@ -1,0 +1,190 @@
+#!/usr/bin/python3
+import time
+import sys
+import os
+import subprocess
+import json
+import requests
+import socket
+import logging
+from subprocess import check_output
+import multiprocessing
+import yaml
+
+'''
+las pruebas deben realizarse con un frecuencia maxima de:
+
+test_lenght * 2
+
+Ej:
+tiempo de pruebas: 30
+Go debe ejecutar script cada 60 segs o mas.
+'''
+
+'''
+Los parámetros como el tipo de prueba (up/down) o el grupo
+(local/nacional/internacional) deberán ser variables obtenidas vía
+stdin.
+
+combinaciones totales:
+
+python gtdsat.py up GTDLocal
+python gtdsat.py down GTDLocal
+
+python gtdsat.py up GTDInternacional
+python gtdsat.py down GTDInternacional
+
+python gtdsat.py up GTDNacional
+python gtdsat.py down GTDNacional
+'''
+
+class Sat:
+
+    def __init__(self):
+        logging.info('Iniciando test')
+
+    def IperfTestRun(self, procnum, return_dict):
+        self.procnum = procnum
+        self.return_dict = return_dict
+        with socket.create_connection((self.host, self.iperf_mux_port), 2) as s:
+            s.sendall("SENDPORT\r\n".encode())
+            self.received_port = int(s.recv(4096).decode())
+            time.sleep(2)
+            if self.test == 'up':
+                result = self.IperfTestUp()
+            elif self.test == 'down':
+                result = self.IperfTestDown()
+        return result
+
+    def IperfTestUp(self):
+        logging.info(f'Iniciando test IperfTestUp : server {self.host}, procesos: {self.upload_con}, tiempo: {self.test_time}, puerto: {self.received_port}')
+        cmd = ['iperf3', '-c', self.host, '-p', str(self.received_port),  '-t', str(self.test_time), '-P', str(self.upload_con), '-4', '-Z', '-O', '30', '--json']
+        try:
+            out = check_output(cmd)
+            self.return_dict[self.procnum] = out
+        except Exception as e:
+            print(e)
+            return False
+
+    def IperfTestDown(self):
+        logging.info(f'Iniciando test IperfTestDown : server {self.host}, procesos: {self.download_con}, tiempo: {self.test_time}, puerto: {self.received_port}')
+        cmd = ['iperf3', '-c', self.host, '-p', str(self.received_port),  '-t', str(self.test_time), '-P', str(self.download_con), '-4','-Z', '-O', '30', '--json', '-R']
+        try:
+            out = check_output(cmd)
+            self.return_dict[self.procnum] = out
+        except Exception as e:
+            print(e)
+            return False
+
+if __name__ == "__main__":
+
+    path_to_config_yaml = '/home/gtd/config.tester.wanlb.yml'
+
+    if not os.path.isfile(path_to_config_yaml):
+        logging.error(f'No existe archivo de configuracion {path_to_config_yaml}')
+        sys.exit(1)
+
+    with open(path_to_config_yaml, 'r') as stream:
+        try:
+            config = yaml.safe_load(stream)
+        except yaml.YAMLError as exc:
+            logging.error(f'Error al leerconfiguracion Yaml {e}')
+            sys.exit(1)
+    '''
+    {
+        'test-length': 30,
+        'test-interval': 5,
+        'server-port': 25000,
+        'grafana-address': 'localhost',
+        'grafana-port': 2003,
+        'tsdb-download-prefix': 'bandwidth.download',
+        'tsdb-upload-prefix': 'bandwidth.upload',
+        'iperf-servers': {
+                    'GTDLocal': ['190.196.123.108', '177.54.144.117', '200.29.48.223'],
+                    'GTDInternacional': ['190.196.123.108', '177.54.144.117', '200.29.48.223'],
+                    'GTDNacional': ['190.196.123.108', '177.54.144.117', '200.29.48.223']
+                    },
+        'conexiones-descarga': 20,
+        'conexiones-subida': 10}
+    '''
+
+    stest = Sat()
+
+    try:
+        stest.iperf_mux_port       = config['server-port']
+        stest.upload_con           = config['conexiones-subida']
+        stest.download_con         = config['conexiones-descarga']
+        stest.grafana_address      = config['grafana-address']
+        stest.grafana_port         = config['grafana-port']
+        stest.tsdb_download_prefix = config['tsdb-download-prefix']
+        stest.tsdb_upload_prefix   = config['tsdb-upload-prefix']
+        stest.test_time            = config['test-length']
+        stest.test_interval        = config['test-interval']
+    except Exception as e:
+        logging.error(f'Error en leer configuracion Yml: {e}')
+        sys.exit(1)
+
+    n = len(sys.argv)
+
+    if n <= 2:
+        logging.error(f'Faltan argumentos')
+        sys.exit(1)
+
+    stest.test = sys.argv[1]
+    stest.grupo = sys.argv[2]
+
+    if stest.test not in ['up','down']:
+        logging.error(f'tipo de test debe ser up or down, valor pasado: {stest.test}')
+        sys.exit(1)
+
+    if stest.grupo not in ['GTDLocal','GTDInternacional','GTDNacional']:
+        logging.error(f'grupo debe ser GTDLocal, GTDInternacional o GTDNacional, valor pasado: {stest.grupo}')
+        sys.exit(1)
+
+    try:
+        servers = config['iperf-servers-parallel'][stest.grupo]
+    except Exception as e:
+        logging.error(f'No existe grupo de servidores en configuracion: {e}')
+        sys.exit(1)
+
+    manager = multiprocessing.Manager()
+    return_dict = manager.dict()
+
+    start = time.time()
+    jobs = []
+    pnum = len(servers)
+    timeout = (int(stest.test_time)*2)
+    
+    logging.info(f'Timeout: {timeout}')
+
+    for procnum, item in enumerate(servers):
+        stest.host = item
+        p = multiprocessing.Process(target=stest.IperfTestRun, args=(procnum, return_dict))
+        jobs.append(p)
+        p.start()
+
+    bool_list = [True]*pnum
+
+    while time.time() - start <= timeout:
+        for i in range(pnum):
+            bool_list[i] = jobs[i].is_alive()
+        if any(bool_list):
+            time.sleep(1)
+        else:
+            logging.info('Procesos terminaron')
+            break
+    else:
+        # sucede muy rara vez
+        logging.info('Proceso se quedo pegado......')
+        for p in jobs:
+            p.terminate()
+
+    for proc in jobs:
+        proc.join()
+
+    results = []
+
+    for test in return_dict.values():
+           results.append(int(json.loads(test)['end']['sum_received']['bits_per_second']))
+
+    print(sum(results)/1000)

@@ -1,12 +1,13 @@
 #!/bin/bash
-# Proceso para pruebas ftth/fo
+# Proceso para pruebas vsat
+
 cd /home/gtd
 
 archivos=(
-    cbandwidth-txt
     config.tester.yml
-    iperf3down-txt
-    iperf3up-txt
+    config.tester.wanlb.yml
+    iperfLB-txt
+    cbandwidth-lb-txt
 )
 for i in "${archivos[@]}"; do
 if [[ -f "/home/gtd/$i" ]]
@@ -26,7 +27,6 @@ function handler(){
 
 # Assign the handler function to the SIGINT signal
 trap handler SIGINT
-
 clear
 echo  "########################################################################"
 echo  "Inicio del set de pruebas"
@@ -34,5 +34,5 @@ echo  "Puede salir de la aplicacion en cualquier comento ejecutando Control+c"
 echo  "########################################################################"
 read -p "Presione [ENTER] para iniciar las pruebas de velocidad o Control+c para salir de la aplicacion..."
 
-sudo ./cbandwidth-txt -config=config.tester.yml
+sudo ./cbandwidth-lb-txt -config=config.tester.yml
 
