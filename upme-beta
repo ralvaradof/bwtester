@@ -1,0 +1,63 @@
+#!/bin/bash
+#
+memoria_minima=7680
+memoria_sistema=$(free -m |awk '/^Mem:/{print $2}')
+
+
+if [ $memoria_sistema -ge $memoria_minima ]; then
+    echo "Memoria fisica instalada cumple con el perfil recomendado"
+else
+### Verificacion de ram
+echo  "####################### MEMORIA INSUFICIENTE ###########################"
+echo  "La cantidad de memoria ram de este equipo no cumple con el minimo requerido"
+echo  "Cantidad de ram detectada: $memoria_sistema MB"
+echo  "Cantidad de ram necesaria: $memoria_minima MB"
+echo  "Es posible que parte del proceso falle o tenga resultados inesperados."
+echo  "########################################################################"
+read -p "Presione [ENTER] para continuar..."
+fi
+
+if [ -f "/home/gtd/gographite_go-graphite.tar" ]; then
+    echo "ISO actualizada"
+else
+echo  "#################### NUEVA VERSION DISPONIBLE #########################"
+echo  "Existe una nueva version de este aplicativo, por favor vuelva a descargar la imagen"
+echo  "desde http://nacional.grupogtd.com/Ubuntu-BWTester-GTD.iso"
+echo  "y grabela en el pendrive segun lo indica el procedimiento."
+echo  "########################################################################"
+read -p "Presione [ENTER] para continuar..."
+fi
+
+sudo systemctl stop systemd-resolved
+sudo rm -f /etc/resolv.conf
+#sudo bash -c 'echo "nameserver 200.75.0.4" > /etc/resolv.conf'
+#sudo bash -c 'echo "nameserver 200.75.0.5" >> /etc/resolv.conf'
+sudo bash -c 'echo "nameserver 8.8.8.8" > /etc/resolv.conf'
+sudo bash -c 'echo "nameserver 1.1.1.1" >> /etc/resolv.conf'
+sudo timedatectl set-timezone America/Santiago
+echo "Actualizando repositorios"
+sudo apt update -qqq
+echo "Actualizacion finalizada"
+cd /home/gtd
+prereq=(
+    menu.bash
+    bwtest.fo.ftth.bash
+    bwtest.vsat.lb.bash
+    speedtest.net.sh
+)
+for i in "${prereq[@]}"; do
+if [[ -f "/home/gtd/$i" ]]
+    then
+    echo "Archivo $i existente en el sistema"
+else
+    wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/$i -O $i
+    chmod +x $i
+    fi
+done
+
+pkgs='dialog'
+if ! dpkg -s $pkgs >/dev/null 2>&1; then
+  sudo apt install -qqq $pkgs
+fi
+
+bash /home/gtd/menu.bash
