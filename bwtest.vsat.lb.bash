@@ -17,20 +17,16 @@ else
 if [ -f "$FILE" ]; then
     sudo docker load -i /home/gtd/gographite_go-graphite.tar
 fi
-sudo docker run -d --name go-graphite --restart=always -p 80:80 -p 2003-2004:2003-2004 gographite/go-graphite
+sudo docker run -d -v /etc/localtime:/etc/localtime:ro --name go-graphite --restart=always -p 80:80 -p 2003-2004:2003-2004 gographite/go-graphite
 fi
 
 cd /home/gtd
 
 archivos=(
-    iperf3-static
-    cbandwidth-gtd
     config.tester.yml
     config.tester.wanlb.yml
     grafana.yml
     grafana.ini
-    iperf3down
-    iperf3up
     iperfLB
     cbandwidth-lb
 )
@@ -53,6 +49,7 @@ else
     sudo docker cp /home/gtd/grafana.ini go-graphite:/etc/grafana/grafana.ini
     sudo docker restart go-graphite
 fi
+clear
 sudo ./cbandwidth-lb -config=config.tester.yml &
 #chromium-browser http://127.0.0.1/d/$(curl --silent http://127.0.0.1/api/search?query=% | jq '.[].uid' | awk -F '"' '{print $2}')?kiosk -start-fullscreen --password-store=basic --no-default-browser-check
 #chromium-browser http://127.0.0.1/d/$(curl --silent http://127.0.0.1/api/search?query=% | jq '.[].uid' | awk -F '"' '{print $2}')?kiosk --password-store=basic --no-default-browser-check

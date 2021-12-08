@@ -1,5 +1,39 @@
 #!/bin/bash
 #
+clear
+memoria_minima=7168
+memoria_sistema=$(free -m |awk '/^Mem:/{print $2}')
+
+
+if [ $memoria_sistema -ge $memoria_minima ]; then
+    echo "Memoria fisica instalada cumple con el perfil recomendado"
+else
+### Verificacion de ram
+echo  "####################### MEMORIA INSUFICIENTE ###########################"
+echo  "La cantidad de memoria ram de este equipo no cumple con el minimo requerido"
+echo  "Cantidad de ram detectada: $memoria_sistema MB"
+echo  "Cantidad de ram necesaria: $memoria_minima MB"
+echo  "Se han limitado las pruebas solo a las que son basadas en texto o cli."
+echo  "########################################################################"
+read -p "Presione [ENTER] para continuar..."
+touch /home/gtd/.ramlock
+clear
+fi
+
+if [ -f "/home/gtd/gographite_go-graphite.tar" ]; then
+    echo "ISO actualizada"
+else
+echo  "#################### NUEVA VERSION DISPONIBLE #########################"
+echo  "Existe una nueva version de este aplicativo, por favor"
+echo  "Descargue la imagen desde http://nacional.grupogtd.com/Ubuntu-BWTester-GTD.iso"
+echo  "y grabela en el pendrive segun lo indica el procedimiento."
+echo  "Si esta realizando la certificacion con un enlace satelital(vsat) o menor a 50 Mbps"
+echo  "prefiera el uso de las pruebas basadas en texto o cli"
+echo  "########################################################################"
+read -p "Presione [ENTER] para continuar..."
+clear
+fi
+
 sudo systemctl stop systemd-resolved
 sudo rm -f /etc/resolv.conf
 #sudo bash -c 'echo "nameserver 200.75.0.4" > /etc/resolv.conf'
@@ -10,12 +44,22 @@ sudo timedatectl set-timezone America/Santiago
 echo "Actualizando repositorios"
 sudo apt update -qqq
 echo "Actualizacion finalizada"
+pkgs='dialog ntpdate'
+if ! dpkg -s $pkgs >/dev/null 2>&1; then
+  sudo apt install -qqq $pkgs
+  echo "Cliente NTP y Dialog han sido instalados con exito"
+else
+  echo "Cliente NTP y Dialog se encuentran presentes en el sistema"
+fi
+echo "Actualizando hora de la maquina con ntp.shoa.cl"
+sudo ntpdate -u -t 3 ntp.shoa.cl
 cd /home/gtd
 prereq=(
-    menu.bash
     bwtest.fo.ftth.bash
     bwtest.vsat.lb.bash
+    bwtest.vsat.lb.txt.bash
     speedtest.net.sh
+    bwtest.fo.ftth.txt.bash
 )
 for i in "${prereq[@]}"; do
 if [[ -f "/home/gtd/$i" ]]
@@ -26,10 +70,17 @@ else
     chmod +x $i
     fi
 done
+#
+if [[ -f "/home/gtd/.ramlock" ]]
+    then
+    wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/menu.ramlock.bash -O /home/gtd/menu.bash
+    chmod +x /home/gtd/menu.bash
+else
+    wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/menu.bash -O /home/gtd/menu.bash
+    chmod +x /home/gtd/menu.bash
+    fi
+done
 
-pkgs='dialog'
-if ! dpkg -s $pkgs >/dev/null 2>&1; then
-  sudo apt install -qqq $pkgs
-fi
 
+rm -f upme
 bash /home/gtd/menu.bash

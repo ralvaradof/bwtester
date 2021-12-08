@@ -13,9 +13,10 @@ echo  "####################### MEMORIA INSUFICIENTE ###########################"
 echo  "La cantidad de memoria ram de este equipo no cumple con el minimo requerido"
 echo  "Cantidad de ram detectada: $memoria_sistema MB"
 echo  "Cantidad de ram necesaria: $memoria_minima MB"
-echo  "Es posible que parte del proceso falle o tenga resultados inesperados."
+echo  "Se han limitado las pruebas solo a las que son basadas en texto o cli."
 echo  "########################################################################"
 read -p "Presione [ENTER] para continuar..."
+touch /home/gtd/.ramlock
 clear
 fi
 
@@ -26,6 +27,8 @@ echo  "#################### NUEVA VERSION DISPONIBLE #########################"
 echo  "Existe una nueva version de este aplicativo, por favor"
 echo  "Descargue la imagen desde http://nacional.grupogtd.com/Ubuntu-BWTester-GTD.iso"
 echo  "y grabela en el pendrive segun lo indica el procedimiento."
+echo  "Si esta realizando la certificacion con un enlace satelital(vsat) o menor a 50 Mbps"
+echo  "prefiera el uso de las pruebas basadas en texto o cli"
 echo  "########################################################################"
 read -p "Presione [ENTER] para continuar..."
 clear
@@ -52,7 +55,6 @@ echo "Actualizando hora de la maquina con ntp.shoa.cl"
 sudo ntpdate -u -t 3 ntp.shoa.cl
 cd /home/gtd
 prereq=(
-    menu.bash
     bwtest.fo.ftth.bash
     bwtest.vsat.lb.bash
     bwtest.vsat.lb.txt.bash
@@ -69,5 +71,16 @@ else
     fi
 done
 #
+if [[ -f "/home/gtd/.ramlock" ]]
+    then
+    wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/menu.ramlock.bash -O /home/gtd/menu.bash
+    chmod +x /home/gtd/menu.bash
+else
+    wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/menu.bash -O /home/gtd/menu.bash
+    chmod +x /home/gtd/menu.bash
+    fi
+done
+
+
 rm -f upme-beta
 bash /home/gtd/menu.bash

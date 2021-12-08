@@ -38,7 +38,7 @@ export servidor_entel=1858
 count=3
 entropia=$RANDOM
 if [ -z ${tipo} ]; then
-    echo "El tipo de prueba no esta difinido"
+    echo "El tipo de prueba no esta definido"
     exit 1
 fi
 clear
