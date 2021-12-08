@@ -52,7 +52,7 @@ else
   echo "Cliente NTP y Dialog se encuentran presentes en el sistema"
 fi
 echo "Actualizando hora de la maquina con ntp.shoa.cl"
-sudo ntpdate -u -t 3 ntp.shoa.cl
+sudo ntpdate -u -t 3 -h ntp.shoa.cl
 cd /home/gtd
 prereq=(
     bwtest.fo.ftth.bash

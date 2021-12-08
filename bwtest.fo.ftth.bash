@@ -17,7 +17,7 @@ else
 if [ -f "$FILE" ]; then
     sudo docker load -i /home/gtd/gographite_go-graphite.tar
 fi
-sudo docker run -d -v /etc/localtime:/etc/localtime:ro --name go-graphite --restart=always -p 80:80 -p 2003-2004:2003-2004 gographite/go-graphite
+sudo docker run -d -v /etc/localtime:/etc/localtime:ro -v /etc/timezone:/etc/timezone:ro --name go-graphite --restart=always -p 80:80 -p 2003-2004:2003-2004 gographite/go-graphite
 fi
 
 cd /home/gtd
