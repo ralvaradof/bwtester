@@ -27,7 +27,7 @@ echo  "#################### NUEVA VERSION DISPONIBLE #########################"
 echo  "Existe una nueva version de este aplicativo, por favor"
 echo  "Descargue la imagen desde http://nacional.grupogtd.com/Ubuntu-BWTester-GTD.iso"
 echo  "y grabela en el pendrive segun lo indica el procedimiento."
-echo  "Si esta realizando la certificacion con un enlace satelital(vsat) o menor a 50 Mbps"
+echo  "Si esta certificando un enlace satelital(vsat) o menor a 50 Mbps"
 echo  "prefiera el uso de las pruebas basadas en texto o cli"
 echo  "########################################################################"
 read -p "Presione [ENTER] para continuar..."
@@ -78,8 +78,8 @@ if [[ -f "/home/gtd/.ramlock" ]]
 else
     wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/menu.bash -O /home/gtd/menu.bash
     chmod +x /home/gtd/menu.bash
-    fi
-done
+fi
+
 
 
 rm -f upme
