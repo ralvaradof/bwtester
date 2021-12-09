@@ -58,7 +58,7 @@ class Sat:
 
     def IperfTestUp(self):
         logging.info(f'Iniciando test IperfTestUp : server {self.host}, procesos: {self.upload_con}, tiempo: {self.test_time}, puerto: {self.received_port}')
-        cmd = ['iperf3', '-c', self.host, '-p', str(self.received_port),  '-t', str(self.test_time), '-P', str(self.upload_con), '-4', '-Z', '-O', '30', '--json']
+        cmd = ['iperf3', '-c', self.host, '-p', str(self.received_port),  '-t', str(self.test_time), '-P', str(self.upload_con), '-4', '-Z', '-O', '15', '--json']
         try:
             out = check_output(cmd)
             self.return_dict[self.procnum] = out
@@ -68,7 +68,7 @@ class Sat:
 
     def IperfTestDown(self):
         logging.info(f'Iniciando test IperfTestDown : server {self.host}, procesos: {self.download_con}, tiempo: {self.test_time}, puerto: {self.received_port}')
-        cmd = ['iperf3', '-c', self.host, '-p', str(self.received_port),  '-t', str(self.test_time), '-P', str(self.download_con), '-4','-Z', '-O', '30', '--json', '-R']
+        cmd = ['iperf3', '-c', self.host, '-p', str(self.received_port),  '-t', str(self.test_time), '-P', str(self.download_con), '-4','-Z', '-O', '15', '--json', '-R']
         try:
             out = check_output(cmd)
             self.return_dict[self.procnum] = out
