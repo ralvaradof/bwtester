@@ -67,10 +67,10 @@ clear
 sudo ./cbandwidth-lb -config=config.tester.yml &
 #chromium-browser http://127.0.0.1/d/$(curl --silent http://127.0.0.1/api/search?query=% | jq '.[].uid' | awk -F '"' '{print $2}')?kiosk -start-fullscreen --password-store=basic --no-default-browser-check
 #chromium-browser http://127.0.0.1/d/$(curl --silent http://127.0.0.1/api/search?query=% | jq '.[].uid' | awk -F '"' '{print $2}')?kiosk --password-store=basic --no-default-browser-check
-chromium-browser http://127.0.0.1/dashboards --password-store=basic --no-default-browser-check
+chromium-browser http://127.0.0.1/dashboards --password-store=basic --no-default-browser-check > /dev/null 2>&1
 #firefox http://127.0.0.1/dashboards --password-store=basic
-pgrep cbandwidth | xargs sudo kill -9
-pgrep iperf3 | xargs sudo kill
+pgrep cbandwidth | xargs sudo kill -9 > /dev/null 2>&1
+pgrep iperf3 | xargs sudo kill > /dev/null 2>&1
 echo  "########################################################################"
 echo  "Ejecucion finalizada"
 echo  "########################################################################"

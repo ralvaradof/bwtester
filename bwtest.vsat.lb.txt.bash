@@ -20,8 +20,8 @@ else
 done
 
 function handler(){
-    pgrep cbandwidth | xargs sudo kill -9
-    pgrep iperf3 | xargs sudo kill
+    pgrep cbandwidth | xargs sudo kill -9 > /dev/null 2>&1
+    pgrep iperf3 | xargs sudo kill > /dev/null 2>&1
     bash menu.bash
 }
 
