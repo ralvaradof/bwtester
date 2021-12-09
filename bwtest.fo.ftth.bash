@@ -18,6 +18,22 @@ if [ -f "$FILE" ]; then
     sudo docker load -i /home/gtd/gographite_go-graphite.tar
 fi
 sudo docker run -d -v /etc/localtime:/etc/localtime:ro -v /etc/timezone:/etc/timezone:ro -e "TZ=America/Santiago" --name go-graphite --restart=always -p 80:80 -p 2003-2004:2003-2004 gographite/go-graphite
+
+if [ $? -eq 0 ] 
+then 
+  echo "Inicio de contenedor exitoso" 
+else 
+  echo  "########################################################################"
+  echo  "ERROR de EJECUCION"
+  echo  "########################################################################"
+  echo  "Se ha dectectado un problema en la ejecucion y ha sido cancelada"
+  echo  "por favor ingrese nuevamente a la aplicacion"
+  echo  "y seleccione la misma prueba en modo texto"
+  echo  "########################################################################"
+  read -p "Presione [ENTER] cerrar la aplicacion ..."
+  exit 1
+fi
+
 fi
 
 cd /home/gtd
