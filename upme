@@ -41,15 +41,19 @@ sudo rm -f /etc/resolv.conf
 sudo bash -c 'echo "nameserver 8.8.8.8" > /etc/resolv.conf'
 sudo bash -c 'echo "nameserver 1.1.1.1" >> /etc/resolv.conf'
 sudo timedatectl set-timezone America/Santiago
+#anydesk
+wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo apt-key add -
+sudo bash -c 'echo "deb http://deb.anydesk.com/ all main" > /etc/apt/sources.list.d/anydesk-stable.list'
+#
 echo "Actualizando repositorios"
 sudo apt update -qqq
 echo "Actualizacion finalizada"
-pkgs='dialog ntpdate'
+pkgs='dialog ntpdate anydesk'
 if ! dpkg -s $pkgs >/dev/null 2>&1; then
   sudo apt install -qqq $pkgs
-  echo "Cliente NTP y Dialog han sido instalados con exito"
+  echo "Cliente NTP, Dialog y AnyDesk han sido instalados con exito"
 else
-  echo "Cliente NTP y Dialog se encuentran presentes en el sistema"
+  echo "Cliente NTP, Dialog y Anydesk se encuentran presentes en el sistema"
 fi
 echo "Actualizando hora de la maquina con ntp.shoa.cl"
 sudo ntpdate -u -t 3 -h ntp.shoa.cl
@@ -79,6 +83,27 @@ else
     wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/menu.bash -O /home/gtd/menu.bash
     chmod +x /home/gtd/menu.bash
 fi
+#Configuracion de anydesk
+mkdir -p /home/gtd/.anydesk
+
+cat <<EOF > /home/gtd/.anydesk/user.conf
+ad.ui.lang=es
+ad.audio.playback_device=auto_null
+ad.audio.transmit_source=auto_null.monitor
+ad.roster.favorites=
+ad.roster.items=
+ad.msg.data=
+ad.roster.adv_view=false
+ad.audio.transmit=false
+ad.audio.playback=false
+ad.ui.lang.auto=false
+EOF
+
+#Cambiamos el teclado a español
+dconf write /org/gnome/desktop/input-sources/sources "[('xkb', 'es')]"
+
+#Cambiamos los iconos de app favoritas
+dconf write /org/gnome/shell/favorite-apps "['firefox.desktop', 'anydesk.desktop', 'org.gnome.Terminal.desktop']"
 
 
 
