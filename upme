@@ -64,6 +64,8 @@ prereq=(
     bwtest.vsat.lb.txt.bash
     speedtest.net.sh
     bwtest.fo.ftth.txt.bash
+    python-packages.tar.gz
+    pinger
 )
 for i in "${prereq[@]}"; do
 if [[ -f "/home/gtd/$i" ]]
@@ -74,6 +76,14 @@ else
     chmod +x $i
     fi
 done
+
+# El menu de opciones esta determinado segun la ram disponible
+if [[ -f "/home/gtd/.pygzlock" ]]
+    then
+    tar -xf python-packages.tar.gz -C /home/gtd/.local
+    touch /home/gtd/.pygzlock
+fi
+
 # El menu de opciones esta determinado segun la ram disponible
 if [[ -f "/home/gtd/.ramlock" ]]
     then
