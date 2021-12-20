@@ -85,7 +85,7 @@ if [ ! -f "/home/gtd/.pygzlock" ]
     tar -zxf python-packages.tar.gz -C /home/gtd/.local
     touch /home/gtd/.pygzlock
 fi
-read -p "Presione [ENTER] para continuar..."
+#read -p "Presione [ENTER] para continuar..."
 
 # El menu de opciones esta determinado segun la ram disponible
 if [[ -f "/home/gtd/.ramlock" ]]
