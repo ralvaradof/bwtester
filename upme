@@ -81,9 +81,11 @@ done
 # Modulos python3 portables
 if [[ ! -f "/home/gtd/.pygzlock" ]]
     then
-    tar -xf python-packages.tar.gz -C /home/gtd/.local
+    echo "Instalando modulos python3"
+    tar -zxf python-packages.tar.gz -C /home/gtd/.local
     touch /home/gtd/.pygzlock
 fi
+read -p "Presione [ENTER] para continuar..."
 
 # El menu de opciones esta determinado segun la ram disponible
 if [[ -f "/home/gtd/.ramlock" ]]
