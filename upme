@@ -79,7 +79,7 @@ done
 
 
 # Modulos python3 portables
-if [[ ! -f "/home/gtd/.pygzlock" ]]
+if [ ! -f "/home/gtd/.pygzlock" ]
     then
     echo "Instalando modulos python3"
     tar -zxf python-packages.tar.gz -C /home/gtd/.local
