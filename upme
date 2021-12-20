@@ -77,8 +77,9 @@ else
     fi
 done
 
-# El menu de opciones esta determinado segun la ram disponible
-if [[ -f "/home/gtd/.pygzlock" ]]
+
+# Modulos python3 portables
+if [[ ! -f "/home/gtd/.pygzlock" ]]
     then
     tar -xf python-packages.tar.gz -C /home/gtd/.local
     touch /home/gtd/.pygzlock
