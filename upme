@@ -121,5 +121,17 @@ dconf write /org/gnome/shell/favorite-apps "['firefox.desktop', 'anydesk.desktop
 #Actualizamos
 dconf update
 
+
+###
+echo  "############# Detectando IP Publica ##########################"
+# IP publica
+IP=$(curl --silent ifconfig.me)
+echo ""
+echo  "IP PUBLICA DETECTADA: $IP"
+echo ""
+echo  "##############################################################"
+echo $IP > /home/gtd/.ippublica
+read -p "Presione [ENTER] para continuar..."
+
 rm -f upme
 bash /home/gtd/menu.bash
