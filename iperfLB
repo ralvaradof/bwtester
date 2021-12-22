@@ -153,7 +153,7 @@ if __name__ == "__main__":
     start = time.time()
     jobs = []
     pnum = len(servers)
-    timeout = (int(stest.test_time)*2)
+    timeout = (int(stest.test_time)*4)
     
     logging.info(f'Timeout: {timeout}')
 
