@@ -113,13 +113,13 @@ ad.ui.lang.auto=false
 EOF
 
 #Cambiamos el teclado a español
-sudo dconf write /org/gnome/desktop/input-sources/sources "[('xkb', 'es')]"
+dconf write /org/gnome/desktop/input-sources/sources "[('xkb', 'es')]"
 
 #Cambiamos los iconos de app favoritas
-sudo dconf write /org/gnome/shell/favorite-apps "['firefox.desktop', 'anydesk.desktop', 'org.gnome.Terminal.desktop']"
+dconf write /org/gnome/shell/favorite-apps "['firefox.desktop', 'anydesk.desktop', 'org.gnome.Terminal.desktop']"
 
 #Actualizamos
-sudo dconf update
+dconf update
 
 
 ###
