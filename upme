@@ -121,7 +121,7 @@ dconf write /org/gnome/shell/favorite-apps "['firefox.desktop', 'anydesk.desktop
 #Actualizamos
 dconf update
 
-
+clear
 ###
 echo  "############# Detectando IP Publica ##########################"
 # IP publica
