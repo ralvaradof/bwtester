@@ -34,5 +34,5 @@ echo  "Puede salir de la aplicacion en cualquier momento ejecutando Control+c"
 echo  "########################################################################"
 read -p "Presione [ENTER] para iniciar las pruebas de velocidad o Control+c para salir de la aplicacion..."
 
-sudo ./cbandwidth-lb-txt -config=config.tester.yml
+sudo ./cbandwidth-lb-txt -config=config.tester.wanlb.yml
 

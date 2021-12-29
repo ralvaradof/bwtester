@@ -50,7 +50,7 @@ sudo apt -qqq update
 echo "Actualizacion finalizada"
 pkgs='dialog ntpdate anydesk'
 if ! dpkg -s $pkgs >/dev/null 2>&1; then
-  sudo apt -qqq install  $pkgs
+  sudo apt -qqqq install  $pkgs
   echo "Cliente NTP, Dialog y AnyDesk han sido instalados con exito"
 else
   echo "Cliente NTP, Dialog y Anydesk se encuentran presentes en el sistema"
