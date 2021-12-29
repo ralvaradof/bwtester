@@ -46,11 +46,11 @@ wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo apt-key add -
 sudo bash -c 'echo "deb http://deb.anydesk.com/ all main" > /etc/apt/sources.list.d/anydesk-stable.list'
 #
 echo "Actualizando repositorios"
-sudo apt update -qqq
+sudo apt -qqq update 
 echo "Actualizacion finalizada"
 pkgs='dialog ntpdate anydesk'
 if ! dpkg -s $pkgs >/dev/null 2>&1; then
-  sudo apt install -qqq $pkgs
+  sudo apt -qqq install  $pkgs
   echo "Cliente NTP, Dialog y AnyDesk han sido instalados con exito"
 else
   echo "Cliente NTP, Dialog y Anydesk se encuentran presentes en el sistema"
@@ -72,7 +72,7 @@ if [[ -f "/home/gtd/$i" ]]
     then
     echo "Archivo $i existente en el sistema"
 else
-    wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/$i -O $i
+    wget -q --no-check-certificate https://velocidad.grupogtd.com/bwtest/$i -O $i
     chmod +x $i
     fi
 done
@@ -90,10 +90,10 @@ fi
 # El menu de opciones esta determinado segun la ram disponible
 if [[ -f "/home/gtd/.ramlock" ]]
     then
-    wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/menu.ramlock.bash -O /home/gtd/menu.bash
+    wget -q --no-check-certificate https://velocidad.grupogtd.com/bwtest/menu.ramlock.bash -O /home/gtd/menu.bash
     chmod +x /home/gtd/menu.bash
 else
-    wget --no-check-certificate https://velocidad.grupogtd.com/bwtest/menu.bash -O /home/gtd/menu.bash
+    wget -q --no-check-certificate https://velocidad.grupogtd.com/bwtest/menu.bash -O /home/gtd/menu.bash
     chmod +x /home/gtd/menu.bash
 fi
 #Configuracion de anydesk
