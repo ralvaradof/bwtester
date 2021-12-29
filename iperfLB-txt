@@ -63,7 +63,7 @@ class Sat:
             out = check_output(cmd)
             self.return_dict[self.procnum] = out
         except Exception as e:
-            print(e)
+#            print(e)
             return False
 
     def IperfTestDown(self):
@@ -73,7 +73,7 @@ class Sat:
             out = check_output(cmd)
             self.return_dict[self.procnum] = out
         except Exception as e:
-            print(e)
+#            print(e)
             return False
 
 if __name__ == "__main__":

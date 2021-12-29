@@ -31,4 +31,5 @@ class Pinger:
 destination = sys.argv[1]
 pinger = Pinger()
 d = pinger.pinga(destination)
-print(f"Latencia: Min: {d['rtt_min']}ms Max: {d['rtt_max']}ms Prom: {d['rtt_avg']}ms - perdida: {d['packet_loss_rate']}%")
+print(f"Latencia: {d['rtt_min']}ms - perdida: {d['packet_loss_rate']}%")
+#print(f"Latencia: Min: {d['rtt_min']}ms Max: {d['rtt_max']}ms Prom: {d['rtt_avg']}ms - perdida: {d['packet_loss_rate']}%")
