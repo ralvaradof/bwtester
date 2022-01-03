@@ -7,12 +7,12 @@ grafana-port: 2003
 tsdb-download-prefix: bandwidth.download
 tsdb-upload-prefix: bandwidth.upload
 iperf-servers:
-  - 190.196.123.108: GTDLocal 
-  - 177.54.144.117: GTDInternacional
-  - 200.29.48.223: GTDNacional
+  - 190.196.123.108: Local 
+  - 177.54.144.117: Internacional
+  - 200.29.48.223: Nacional
 conexiones-descarga: 20
 conexiones-subida: 20
 iperf-servers-parallel:
-  GTDLocal: ['190.196.123.109', '190.196.123.109', '190.196.123.109', '190.196.123.109']
-  GTDInternacional: ['177.54.144.117', '177.54.144.117', '177.54.144.117','177.54.144.117']
-  GTDNacional: ['200.29.48.223', '200.29.48.223', '200.29.48.223', '200.29.48.223']
+  Local: ['190.196.123.109', '190.196.123.109', '190.196.123.109', '190.196.123.109']
+  Internacional: ['177.54.144.117', '177.54.144.117', '177.54.144.117','177.54.144.117']
+  Nacional: ['200.29.48.223', '200.29.48.223', '200.29.48.223', '200.29.48.223']

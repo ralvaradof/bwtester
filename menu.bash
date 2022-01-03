@@ -2,7 +2,7 @@
 
 HEIGHT=15
 WIDTH=60
-CHOICE_HEIGHT=7
+CHOICE_HEIGHT=9
 BACKTITLE="Herramienta de pruebas de velocidad - GTD"
 TITLE="Pruebas de Velocidad"
 MENU="Seleccione alguna de las siguientes pruebas:"
@@ -11,9 +11,11 @@ OPTIONS=(1 "Prueba automatizada FO/FTTH - iperf3"
          2 "Prueba automatizada FO/FTTH - iperf3 (texto)"
          3 "Prueba automatizada vsat/wanLB - iperf3"
          4 "Prueba automatizada vsat/wanLB - iperf3 (texto)"
-         5 "speedtest.net(cli) - Internacional/Local/Nacional"
-         6 "speedtest.net(cli) - Nacional y Local"
-         7 "speedtest.net(cli) - Solo Internacional")
+         5 "Prueba Descarga vsat/wanLB - iperf3 (texto)"
+         6 "Prueba Subida   vsat/wanLB - iperf3 (texto)"
+         7 "speedtest.net(cli) - Internacional/Local/Nacional"
+         8 "speedtest.net(cli) - Nacional y Local"
+         9 "speedtest.net(cli) - Solo Internacional")
 
 CHOICE=$(dialog --clear \
                 --backtitle "$BACKTITLE" \
@@ -38,12 +40,18 @@ case $CHOICE in
             bash bwtest.vsat.lb.txt.bash
             ;;
         5)
-            bash speedtest.net.sh Internacional.Nacional.Local
+            bash bwtest.vsat.lb.txt.down.bash
             ;;
         6)
-            bash speedtest.net.sh Nacional.Local
+            bash bwtest.vsat.lb.txt.up.bash
             ;;
         7)
+            bash speedtest.net.sh Internacional.Nacional.Local
+            ;;
+        8)
+            bash speedtest.net.sh Nacional.Local
+            ;;
+        9)
             bash speedtest.net.sh Solo.Internacional
             ;;
 esac

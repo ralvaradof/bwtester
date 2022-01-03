@@ -30,7 +30,7 @@ def IperfTestUp(iperf_host, iperf_port, iperf_procs, iperf_time):
     #except:
     #    return False
     except Exception as e:
-        print(e)
+     #   print(e)
         return False
 
 def IperfTestDown(iperf_host, iperf_port, iperf_procs, iperf_time):
@@ -41,7 +41,7 @@ def IperfTestDown(iperf_host, iperf_port, iperf_procs, iperf_time):
     #except:
     #    return False
     except Exception as e:
-        print(e)
+    #    print(e)
         return False
 #def IperfTestJitter(iperf_host, iperf_port):
 #    regex = re.compile('^\[SUM\].*\s([0-9]+\.[0-9]+) ms')

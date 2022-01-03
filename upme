@@ -62,6 +62,8 @@ prereq=(
     bwtest.fo.ftth.bash
     bwtest.vsat.lb.bash
     bwtest.vsat.lb.txt.bash
+    bwtest.vsat.lb.txt.up.bash
+    bwtest.vsat.lb.txt.down.bash
     speedtest.net.sh
     bwtest.fo.ftth.txt.bash
     python-packages.tar.gz
