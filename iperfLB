@@ -137,9 +137,9 @@ if __name__ == "__main__":
         logging.error(f'tipo de test debe ser up or down, valor pasado: {stest.test}')
         sys.exit(1)
 
-    if stest.grupo not in ['GTDLocal','GTDInternacional','GTDNacional']:
-        logging.error(f'grupo debe ser GTDLocal, GTDInternacional o GTDNacional, valor pasado: {stest.grupo}')
-        sys.exit(1)
+#    if stest.grupo not in ['GTDLocal','GTDInternacional','GTDNacional']:
+#        logging.error(f'grupo debe ser GTDLocal, GTDInternacional o GTDNacional, valor pasado: {stest.grupo}')
+#        sys.exit(1)
 
     try:
         servers = config['iperf-servers-parallel'][stest.grupo]

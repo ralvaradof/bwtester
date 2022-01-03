@@ -1,6 +1,6 @@
 ---
 test-length: 30 
-test-interval: 2 
+test-interval: 1 
 server-port: 25000 
 grafana-address: localhost
 grafana-port: 2003
