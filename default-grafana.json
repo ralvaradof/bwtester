@@ -71,9 +71,9 @@
             }
           ],
           "aliasColors": {
-            "GTDNacional": "#FFFC33",
-            "GTDInternacional": "#FF3333",
-            "GTDLocal": "#3352FF"
+            "Nacional": "#FFFC33",
+            "Internacional": "#FF3333",
+            "Local": "#3352FF"
           },
           "seriesOverrides": [],
           "links": []
@@ -142,9 +142,9 @@
             }
           ],
           "aliasColors": {
-            "GTDNacional": "#FFFC33",
-            "GTDInternacional": "#FF3333",
-            "GTDLocal": "#3352FF"
+            "Nacional": "#FFFC33",
+            "Internacional": "#FF3333",
+            "Local": "#3352FF"
           },
           "seriesOverrides": [],
           "links": []
@@ -208,9 +208,9 @@
             }
           ],
           "aliasColors": {
-            "GTDNacional": "#FFFC33",
-            "GTDInternacional": "#FF3333",
-            "GTDLocal": "#3352FF"
+            "Nacional": "#FFFC33",
+            "Internacional": "#FF3333",
+            "Local": "#3352FF"
           },
           "seriesOverrides": [],
           "links": []
@@ -378,17 +378,17 @@
           },
           "targets": [
             {
-              "target": "bandwidth.download.GTDNacional",
+              "target": "bandwidth.download.Nacional",
               "hide": false
             },
             {
-              "target": "bandwidth.upload.GTDNacional",
+              "target": "bandwidth.upload.Nacional",
               "hide": false
             }
           ],
           "aliasColors": {
-            "bandwidth.upload.GTDNacional": "#BADFF4",
-            "bandwidth.download.GTDNacional": "#1F78C1"
+            "bandwidth.upload.Nacional": "#BADFF4",
+            "bandwidth.download.Nacional": "#1F78C1"
           },
           "seriesOverrides": [],
           "links": []
@@ -453,15 +453,15 @@
           },
           "targets": [
             {
-              "target": "bandwidth.download.GTDInternacional"
+              "target": "bandwidth.download.Internacional"
             },
             {
-              "target": "bandwidth.upload.GTDInternacional"
+              "target": "bandwidth.upload.Internacional"
             }
           ],
           "aliasColors": {
-            "bandwidth.download.GTDInternacional": "#1F78C1",
-            "bandwidth.upload.GTDInternacional": "#EAB839"
+            "bandwidth.download.Internacional": "#1F78C1",
+            "bandwidth.upload.Internacional": "#EAB839"
           },
           "seriesOverrides": [],
           "links": []
@@ -527,15 +527,15 @@
           },
           "targets": [
             {
-              "target": "bandwidth.download.GTDLocal"
+              "target": "bandwidth.download.Local"
             },
             {
-              "target": "bandwidth.upload.GTDLocal"
+              "target": "bandwidth.upload.Local"
             }
           ],
           "aliasColors": {
-            "bandwidth.download.GTDLocal": "#1F78C1",
-            "bandwidth.upload.GTDLocal": "#AEA2E0"
+            "bandwidth.download.Local": "#1F78C1",
+            "bandwidth.upload.Local": "#AEA2E0"
           },
           "seriesOverrides": [],
           "links": []

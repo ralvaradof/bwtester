@@ -3,7 +3,7 @@
 HEIGHT=15
 WIDTH=60
 CHOICE_HEIGHT=7
-BACKTITLE="Herramienta de pruebas de velocidad - GTD"
+BACKTITLE="Herramienta de pruebas de velocidad"
 TITLE="Pruebas de Velocidad"
 MENU="Seleccione alguna de las siguientes pruebas:"
 
