@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HEIGHT=15
+HEIGHT=17
 WIDTH=60
 CHOICE_HEIGHT=9
 BACKTITLE="Herramienta de pruebas de velocidad"

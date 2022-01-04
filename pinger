@@ -9,7 +9,7 @@ class Pinger:
 
     def __init__(self):
         logging.info('Iniciando test')
-        self.count = 5
+        self.count = 15
         self.timeout = 1000
         self.deadline = 3000
 
