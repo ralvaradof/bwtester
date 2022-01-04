@@ -7,7 +7,7 @@ grafana-port: 2003
 tsdb-download-prefix: bandwidth.download
 tsdb-upload-prefix: bandwidth.upload
 iperf-servers:
-  - 177.54.144.117: Internacional
+  - 1.1.1.1: Internacional
   - 200.29.48.223: Nacional
 conexiones-descarga: 10 
 conexiones-subida:  15 
