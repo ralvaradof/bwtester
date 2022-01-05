@@ -9,7 +9,7 @@ class Pinger:
 
     def __init__(self):
         logging.info('Iniciando test')
-        self.count = 15
+        self.count = 10
         self.timeout = 1000
         self.deadline = 3000
 
@@ -21,7 +21,7 @@ class Pinger:
         transmitter.deadline = self.deadline
         transmitter.timeout = self.timeout
         transmitter.packet_size = 16 
-        transmitter.ping_option = "-i 0.3"
+        #transmitter.ping_option = "-i 0.3"
         try:
             result = transmitter.ping()
             resultasdict = json.loads((json.dumps(ping_parser.parse(result).as_dict(), indent=4)))
