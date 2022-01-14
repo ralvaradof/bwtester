@@ -68,6 +68,9 @@ prereq=(
     bwtest.fo.ftth.txt.bash
     python-packages.tar.gz
     pinger
+    txtping
+    certificacion.subtel.txt.bash
+    iperfLB-txt
 )
 for i in "${prereq[@]}"; do
 if [[ -f "/home/gtd/$i" ]]

@@ -2,7 +2,7 @@
 
 HEIGHT=17
 WIDTH=60
-CHOICE_HEIGHT=9
+CHOICE_HEIGHT=10
 BACKTITLE="Herramienta de pruebas de velocidad"
 TITLE="Pruebas de Velocidad"
 MENU="Seleccione alguna de las siguientes pruebas:"
@@ -15,7 +15,8 @@ OPTIONS=(1 "Prueba automatizada FO/FTTH - iperf3"
          6 "Prueba Subida   vsat/wanLB - iperf3 (texto)"
          7 "speedtest.net(cli) - Internacional/Local/Nacional"
          8 "speedtest.net(cli) - Nacional y Local"
-         9 "speedtest.net(cli) - Solo Internacional")
+         9 "speedtest.net(cli) - Solo Internacional"
+         10 "Pruebas Certificacion VSAT - Texto")
 
 CHOICE=$(dialog --clear \
                 --backtitle "$BACKTITLE" \
@@ -53,5 +54,8 @@ case $CHOICE in
             ;;
         9)
             bash speedtest.net.sh Solo.Internacional
+            ;;
+        10)
+            bash certificacion.subtel.txt.bash
             ;;
 esac
