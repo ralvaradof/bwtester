@@ -95,9 +95,10 @@ done
 resultado_latencia=$( echo "scale=2; $sumlat / $npruebas" | bc )
 echo  "########################################################################"
 echo "El resultado promedio de las $npruebas pruebas fue: $resultado_latencia ms"
-
+echo  ""
 echo  "########################################################################"
 echo  "Ejecucion finalizada"
+echo  "########################################################################"
 echo  "Resultados:"
 echo  "Descarga Internacional promedio($npruebas pruebas): $resultado_internacional Mbps"
 echo  "Subida Internacional promedio($npruebas pruebas): $resultado_internacional_up Mbps"
