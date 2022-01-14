@@ -71,6 +71,7 @@ prereq=(
     txtping
     certificacion.subtel.txt.bash
     iperfLB-txt
+    config.tester.wanlb.yml
 )
 for i in "${prereq[@]}"; do
 if [[ -f "/home/gtd/$i" ]]
