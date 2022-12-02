@@ -1,13 +1,16 @@
 #!/bin/bash
 
 # Instalamos el paquete de speedtest cli
-pkgs='speedtest'
-if ! dpkg -s $pkgs >/dev/null 2>&1; then
-  curl -s https://install.speedtest.net/app/cli/install.deb.sh | sudo bash
-  sudo apt install -qqq $pkgs
+if [[ -f "/home/gtd/speedtest" ]]
+then
+    echo "App de speedtest cli ya instalada"
 else
- echo "Aplicacion speedtest cli ya se encuentra instalada"
+    wget https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-linux-x86_64.tgz -O /home/gtd/speedtestcli.tgz
+    cd /home/gtd/
+    tar -zxvf /home/gtd/speedtestcli.tgz
+    chmod +x /home/gtd/speedtest
 fi
+
 
 if [[ -f "/home/gtd/.config/ookla/speedtest-cli.json" ]]
     then
@@ -56,7 +59,7 @@ echo  "########################################################################"
 
 for i in $(seq $count); do
     entropia=$RANDOM
-    script -c 'speedtest -s $servidor_stgo' resultados.$servidor_stgo.$entropia.log
+    script -c '/home/gtd/speedtest -s $servidor_stgo' resultados.$servidor_stgo.$entropia.log
     sed -i '/Script/d' resultados.$servidor_stgo.$entropia.log
 done
 
@@ -66,7 +69,7 @@ echo  "########################################################################"
 
 for i in $(seq $count); do
     entropia=$RANDOM
-    script -c 'speedtest -s $servidor_vald' resultados.$servidor_vald.$entropia.log
+    script -c '/home/gtd/speedtest -s $servidor_vald' resultados.$servidor_vald.$entropia.log
     sed -i '/Script/d' resultados.$servidor_vald.$entropia.log
 done
 
@@ -76,7 +79,7 @@ echo  "########################################################################"
 
 for i in $(seq $count); do
     entropia=$RANDOM
-    script -c 'speedtest -s $servidor_movistar' resultados.$servidor_movistar.$entropia.log
+    script -c '/home/gtd/speedtest -s $servidor_movistar' resultados.$servidor_movistar.$entropia.log
     sed -i '/Script/d' resultados.$servidor_movistar.$entropia.log
 done
 
@@ -86,7 +89,7 @@ echo  "########################################################################"
 
 for i in $(seq $count); do
     entropia=$RANDOM
-    script -c 'speedtest -s $servidor_entel' resultados.$servidor_entel.$entropia.log
+    script -c '/home/gtd/speedtest -s $servidor_entel' resultados.$servidor_entel.$entropia.log
     sed -i '/Script/d' resultados.$servidor_entel.$entropia.log
 done
 
@@ -96,7 +99,7 @@ echo  "########################################################################"
 
 for i in $(seq $count); do
     entropia=$RANDOM
-    script -c 'speedtest -s $servidor_br' resultados.$servidor_br.$entropia.log
+    script -c '/home/gtd/speedtest -s $servidor_br' resultados.$servidor_br.$entropia.log
     sed -i '/Script/d' resultados.$servidor_br.$entropia.log
 done
 
@@ -106,7 +109,7 @@ echo  "########################################################################"
 
 for i in $(seq $count); do
     entropia=$RANDOM
-    script -c 'speedtest -s $servidor_mia' resultados.$servidor_mia.$entropia.log
+    script -c '/home/gtd/speedtest -s $servidor_mia' resultados.$servidor_mia.$entropia.log
     sed -i '/Script/d' resultados.$servidor_mia.$entropia.log
 done
 
@@ -154,7 +157,7 @@ echo  "########################################################################"
 
 for i in $(seq $count); do
     entropia=$RANDOM
-    script -c 'speedtest -s $servidor_stgo' resultados.$servidor_stgo.$entropia.log
+    script -c '/home/gtd/speedtest -s $servidor_stgo' resultados.$servidor_stgo.$entropia.log
     sed -i '/Script/d' resultados.$servidor_stgo.$entropia.log
 done
 
@@ -164,7 +167,7 @@ echo  "########################################################################"
 
 for i in $(seq $count); do
     entropia=$RANDOM
-    script -c 'speedtest -s $servidor_vald' resultados.$servidor_vald.$entropia.log
+    script -c '/home/gtd/speedtest -s $servidor_vald' resultados.$servidor_vald.$entropia.log
     sed -i '/Script/d' resultados.$servidor_vald.$entropia.log
 done
 
@@ -174,7 +177,7 @@ echo  "########################################################################"
 
 for i in $(seq $count); do
     entropia=$RANDOM
-    script -c 'speedtest -s $servidor_movistar' resultados.$servidor_movistar.$entropia.log
+    script -c '/home/gtd/speedtest -s $servidor_movistar' resultados.$servidor_movistar.$entropia.log
     sed -i '/Script/d' resultados.$servidor_movistar.$entropia.log
 done
 
@@ -184,7 +187,7 @@ echo  "########################################################################"
 
 for i in $(seq $count); do
     entropia=$RANDOM
-    script -c 'speedtest -s $servidor_entel' resultados.$servidor_entel.$entropia.log
+    script -c '/home/gtd/speedtest -s $servidor_entel' resultados.$servidor_entel.$entropia.log
     sed -i '/Script/d' resultados.$servidor_entel.$entropia.log
 done
 
@@ -223,7 +226,7 @@ echo  "########################################################################"
 
 for i in $(seq $count); do
     entropia=$RANDOM
-    script -c 'speedtest -s $servidor_br' resultados.$servidor_br.$entropia.log
+    script -c '/home/gtd/speedtest -s $servidor_br' resultados.$servidor_br.$entropia.log
     sed -i '/Script/d' resultados.$servidor_br.$entropia.log
 done
 
@@ -233,7 +236,7 @@ echo  "########################################################################"
 
 for i in $(seq $count); do
     entropia=$RANDOM
-    script -c 'speedtest -s $servidor_mia' resultados.$servidor_mia.$entropia.log
+    script -c '/home/gtd/speedtest -s $servidor_mia' resultados.$servidor_mia.$entropia.log
     sed -i '/Script/d' resultados.$servidor_mia.$entropia.log
 done
 
