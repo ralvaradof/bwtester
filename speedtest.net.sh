@@ -5,7 +5,7 @@ if [[ -f "/home/gtd/speedtest" ]]
 then
     echo "App de speedtest cli ya instalada"
 else
-    wget https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-linux-x86_64.tgz -O /home/gtd/speedtestcli.tgz
+    wget --no-check-certificate https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-linux-x86_64.tgz -O /home/gtd/speedtestcli.tgz
     cd /home/gtd/
     tar -zxvf /home/gtd/speedtestcli.tgz
     chmod +x /home/gtd/speedtest
